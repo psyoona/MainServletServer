@@ -98,5 +98,35 @@ public class JDBC {
 		}
 		return false;
 	}
-	
+
+	public boolean checkID(String id) {
+		// 아이디 중복 체크 메소드
+		String id_db;
+		try{
+			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+			con = DriverManager.getConnection(dburl, "scott", "tiger");
+			
+			pstmt = con.prepareStatement("SELECT * FROM userList");
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				id_db = rs.getString("id");
+				if(id_db.equals(id)){
+					// 데이터베이스에 일치하는 아이디가 있는 경우
+					System.out.println("일치하는 아이디 있음");
+					return true;
+				}
+			}			
+			
+		} catch(IllegalArgumentException e){
+			System.out.println("입력 형탤를 확인하세요");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if(con != null){try{con.close();}catch(Exception e){}}
+			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
+			if(rs != null){try{rs.close();}catch(Exception e){}}
+		}
+		return false;
+	}
 }
