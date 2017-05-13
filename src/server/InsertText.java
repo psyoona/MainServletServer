@@ -18,11 +18,8 @@ import javax.imageio.ImageIO;
  */
 
 public class InsertText {
-
 	public static void gogo() {
-
 		long startTime = System.currentTimeMillis();
-
 		String subject = "사진의 제목";
 		String year = "2015";
 

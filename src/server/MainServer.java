@@ -15,6 +15,9 @@ public class MainServer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	static String dburl=null;
+	static JDBC adminJDBC;
+	static boolean checkLogin;
+	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,25 +33,75 @@ public class MainServer extends HttpServlet {
 		String result = getBody(req);
 		String[] array = result.split("\"");
 		dumpArray(array);
-		System.out.println(result);
+		//System.out.println(result);
 	}
 
 	// 입력값에 따라 처리해줄 부분
+	@SuppressWarnings("static-access")
 	public static void dumpArray(String[] array) {
-		for (int i = 0; i < array.length; i++)
-			if(array[i].equals("id")){
-				System.out.format("My ID is %s\n", array[i+2]);
-			}else if(array[i].equals("pw")){
-				System.out.println("pw 입력값");
-				System.out.format("My PW is %s\n", array[i+2]);
-			}
+		String id=null, pw=null, nickname=null;
+		for (int i = 0; i < array.length; i++){
+			switch(array[i]){
+			// 어떤 버튼이 클릭되었는지에 따라 처리되는 부분
+			case "register":
+				// 회원가입 작성완료 버튼이 클릭된 경우
+				System.out.println("회원가입 요청이 들어옴");
+				
+				id = null; pw = null; nickname = null;
+				for(int j = 0; j < array.length; j++){
+					if(array[j].equals("id")){
+						id = array[j+2];
+					}else if(array[j].equals("pw")){
+						pw = array[j+2];
+					}else if(array[j].equals("nickname")){
+						nickname = array[j+2];
+					}
+				}
+				
+//				System.out.println(id + " " + pw + " " + nickname);
+				
+				adminJDBC = new JDBC();
+				adminJDBC.registerDB(id, pw, nickname);
+				break;
+			
+			case "login":
+				// 로그인 버튼이 클릭된 경우				
+				id = null; pw = null; nickname = null;
+				for(int j = 0; j < array.length; j++){
+					if(array[j].equals("id")){
+						id = array[j+2];
+					}else if(array[j].equals("pw")){
+						pw = array[j+2];
+					}
+				}
+				adminJDBC = new JDBC();
+				checkLogin = adminJDBC.loginDB(id, pw);
+				if(checkLogin){
+					// 로그인 정보가 일치하는 경우
+				}else{
+					// 로그인 정보가 일치하지 않는 경우
+				}
+				break;
+				
+			case "showAlbum":
+				break;
+				
+			case "fixPicture":
+				break;
+				
+			default:
+				
+				break;
+				
+			}			
+		}
 	}
 
 	@SuppressWarnings("static-access")
 	public static String getBody(HttpServletRequest request) throws IOException {
 		// 데이터베이스가 연결되었는지 확인하는 부분
-		JDBC test = new JDBC();
-		test.startDB();
+		adminJDBC = new JDBC();
+		adminJDBC.startDB();
 
 		String body = null;
 		StringBuilder stringBuilder = new StringBuilder();
