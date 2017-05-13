@@ -20,6 +20,8 @@
   	<url-pattern>/servers</url-pattern>
   </servlet-mapping>
   
+  
+  
   <filter>
   	<filter-name>CorsFilter</filter-name>
   	<filter-class>server.CorsFilter</filter-class>

@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-
 public class MainServer extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	static String dburl=null;
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("get!@!@#");
@@ -27,24 +27,28 @@ public class MainServer extends HttpServlet {
 	}
 
 	protected void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		String result = getBody(req);
 		String[] array = result.split("\"");
 		dumpArray(array);
 		System.out.println(result);
 	}
 
+	// 입력값에 따라 처리해줄 부분
 	public static void dumpArray(String[] array) {
 		for (int i = 0; i < array.length; i++)
-			if(array[i].equals("type")){
-				System.out.format("My type is %s", array[i+2]);
-//				System.out.println("My type is " + array[i+1]);
+			if(array[i].equals("id")){
+				System.out.format("My ID is %s\n", array[i+2]);
+			}else if(array[i].equals("pw")){
+				System.out.println("pw 입력값");
+				System.out.format("My PW is %s\n", array[i+2]);
 			}
-		
-			//System.out.format("array[%d] = %s%n", i, array[i]);
 	}
 
+	@SuppressWarnings("static-access")
 	public static String getBody(HttpServletRequest request) throws IOException {
+		// 데이터베이스가 연결되었는지 확인하는 부분
+		JDBC test = new JDBC();
+		test.startDB();
 
 		String body = null;
 		StringBuilder stringBuilder = new StringBuilder();
@@ -62,6 +66,7 @@ public class MainServer extends HttpServlet {
 			}
 		} catch (IOException ex) {
 			throw ex;
+			
 		} finally {
 			if (bufferedReader != null) {
 				try {
