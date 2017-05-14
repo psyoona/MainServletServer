@@ -19,6 +19,8 @@ public class MainServer extends HttpServlet {
 	static boolean checkLogin; // 로그인 처리 되었는지 체크하는 변수
 	static boolean checkID; // 중복아이디가 있는지 처리하는 변수
 	
+	static EstimationAnalysis emotion; // 감정 분석하기 위한 클래스
+	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,7 +38,7 @@ public class MainServer extends HttpServlet {
 		String[] array = result.split("\"");
 		dumpArray(array, resp);
 		
-		//System.out.println(result);
+		System.out.println(result);
 	}
 
 	// 입력값에 따라 처리해줄 부분
@@ -108,6 +110,18 @@ public class MainServer extends HttpServlet {
 					// 로그인 정보가 일치하지 않는 경우
 					resp.getWriter().print("fail");
 				}
+				break;
+				
+			case "faceRectangle\\":
+				// 얼굴인식 처리하는 부분
+				emotion = new EstimationAnalysis();
+				emotion.analysis(array);
+				
+//				for(int j = 0; j < array.length; j++){
+//					if(array[j].equals("happiness\\")){
+//						System.out.println(array[j+1]);
+//					}
+//				}
 				break;
 				
 			case "showAlbum":
