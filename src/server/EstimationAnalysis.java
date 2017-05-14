@@ -4,15 +4,8 @@ public class EstimationAnalysis {
 	// 받은 JSON 값으로부터 감정을 분석하는 클래스
 	// 감정 변수들
 	public enum Emotion {anger, contempt, disgust, fear, happiness, neutral, sadness, surprise}
-	
-	static double anger; // 화냄
-	static double contempt; // 경멸, 멸시, 무시
-	static double disgust; // 혐오감, 역겨움
-	static double fear; // 공포, 두려움
-	static double happiness; // 행복
-	static double neutral; // 중립적인
-	static double sadness; // 슬픔
-	static double surprise; // 놀람
+		
+	static Double[] emotion;
 	
 	static Emotion firstEmotion; // 가장 비중이 높은 감정
 	static Emotion secondEmotion; // 두번째로 비중이 높은 감정
@@ -24,7 +17,8 @@ public class EstimationAnalysis {
 	public EstimationAnalysis(){
 		// Constructor
 		firstEmotion = Emotion.anger; secondEmotion = Emotion.anger; thirdEmotion = Emotion.anger;
-		maxValue = 0.000001;		
+		maxValue = 0;
+		emotion = new Double[8];
 	}
 	
 	public static void printEmotion(){
@@ -36,49 +30,15 @@ public class EstimationAnalysis {
 	}
 	
 	public static void decideEmotion(){
-		// 값에 따라 감정을 결정한다.
-		if(anger >= maxValue){
-			firstEmotion = Emotion.anger;
-			maxValue = anger;
-		}
-		
-		if(contempt >= maxValue){
-			firstEmotion = Emotion.contempt;
-			maxValue = contempt;
-		}
-		
-		if(disgust >= maxValue){
-			firstEmotion = Emotion.disgust;
-			maxValue = disgust;
-		}
-		
-		if(fear >= maxValue){
-			firstEmotion = Emotion.fear;
-			maxValue = fear;
-		}
-		
-		if(happiness >= maxValue){
-			firstEmotion = Emotion.happiness;
-			maxValue = happiness;
-		}
-		
-		if(neutral >= maxValue){
-			firstEmotion = Emotion.neutral;
-			maxValue = neutral;
-		}
-		
-		if(sadness >= maxValue){
-			firstEmotion = Emotion.sadness;
-			maxValue = sadness;
-		}
-		
-		if(surprise >= maxValue){
-			firstEmotion = Emotion.surprise;
-			maxValue = surprise;
-		}
+		for(int i=0; i<emotion.length; i++){
+			if(emotion[i] >= maxValue){
+				maxValue = emotion[i];
+				firstEmotion = Emotion.values()[i];
+			}
+		}// End of for	
 		
 		printEmotion();
-	}
+	}// End of decideEmotion function
 	
 	public static void analysis(String[] result){
 		// 분석된 값을 변수에 입력시키는 메소드
@@ -86,42 +46,42 @@ public class EstimationAnalysis {
 			switch(result[j]){
 			case "anger\\":
 				temp = result[j+1].substring(1, result[j+1].length()-2);
-				anger = Double.valueOf(temp);
+				emotion[0] = Double.valueOf(temp);
 				
 				break;
 			case "contempt\\":
 				temp = result[j+1].substring(1, result[j+1].length()-2);
-				contempt = Double.valueOf(temp);
+				emotion[1] = Double.valueOf(temp);
 				
 				break;
 			case "disgust\\":
 				temp = result[j+1].substring(1, result[j+1].length()-2);
-				disgust = Double.valueOf(temp);
+				emotion[2] = Double.valueOf(temp);
 				
 				break;
 			case "fear\\":
 				temp = result[j+1].substring(1, result[j+1].length()-2);
-				fear = Double.valueOf(temp);
+				emotion[3] = Double.valueOf(temp);
 				
 				break;
 			case "happiness\\":
 				temp = result[j+1].substring(1, result[j+1].length()-2);
-				happiness = Double.valueOf(temp);
+				emotion[4] = Double.valueOf(temp);
 				
 				break;
 			case "neutral\\":
 				temp = result[j+1].substring(1, result[j+1].length()-2);
-				neutral = Double.valueOf(temp);
+				emotion[5] = Double.valueOf(temp);
 				
 				break;
 			case "sadness\\":
 				temp = result[j+1].substring(1, result[j+1].length()-2);
-				sadness = Double.valueOf(temp);
+				emotion[6] = Double.valueOf(temp);
 				
 				break;
 			case "surprise\\":
 				temp = result[j+1].substring(1, result[j+1].length()-3);
-				surprise = Double.valueOf(temp);
+				emotion[7] = Double.valueOf(temp);
 				
 				break;				
 			} // End Switch					
