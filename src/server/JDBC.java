@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import server.EstimationAnalysis.Emotion;
+
 public class JDBC {
 	static String dburl = null;
 	static Connection con = null;
@@ -195,5 +197,28 @@ public class JDBC {
 		}
 		return imgPath;
 		
+	}
+
+	public void saveEmotion(String imgPath, Emotion firstEmotion) {
+		try{
+			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
+			
+			pstmt = con.prepareStatement("INSERT INTO emotion VALUES(?, ?)");
+			pstmt.setString(1, imgPath);
+			pstmt.setString(2, String.valueOf(firstEmotion));
+			pstmt.executeUpdate();
+			
+			System.out.println("저장 완료");
+			
+		} catch(IllegalArgumentException e){
+			System.out.println("입력 형태를 확인하세요");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if(con != null){try{con.close();}catch(Exception e){}}
+			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
+			if(rs != null){try{rs.close();}catch(Exception e){}}
+		}
 	}
 }

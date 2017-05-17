@@ -14,20 +14,23 @@ public class EstimationAnalysis {
 	static String temp; // 값을 임시저장해둘 변수
 	static double maxValue; // 비교를 위한 변수
 	
-	public EstimationAnalysis(){
+	static String imgPath; // 이미지 경로를 저장해두기 위한 임시 변수
+	
+	@SuppressWarnings("static-access")
+	public EstimationAnalysis(String imgPath){
 		// Constructor
 		firstEmotion = Emotion.anger; secondEmotion = Emotion.anger; thirdEmotion = Emotion.anger;
 		maxValue = 0;
 		emotion = new Double[8];
+		this.imgPath = imgPath;
 	}
 	
-	public static void printEmotion(){
+	public static void saveEmotion(){
+		// 결정된 하나의 감정을 저장하기 위한 메소드
+		JDBC adminJDBC = new JDBC();
+		adminJDBC.saveEmotion(imgPath, firstEmotion);
 		System.out.println("이 사진의 Emotion은 "+ firstEmotion +" 입니다.");
-	}
-	
-	public static String sendEmotion(){
-		return String.valueOf(firstEmotion);
-	}
+	}	
 	
 	public static void decideEmotion(){
 		for(int i=0; i<emotion.length; i++){
@@ -37,7 +40,8 @@ public class EstimationAnalysis {
 			}
 		}// End of for	
 		
-		printEmotion();
+		// 결정된 Emotion을 데이터베이스에 저장한다.
+		saveEmotion();
 	}// End of decideEmotion function
 	
 	public static void analysis(String[] result){

@@ -18,7 +18,7 @@ public class MakeDirectory {
         if(!file.exists()){
             //디렉토리 생성 메서드
             file.mkdirs();
-            System.out.println("created directory successfully!");
+            System.out.println(userID +" folder created directory successfully!");
         }
 	}	
 }

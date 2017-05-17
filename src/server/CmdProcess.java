@@ -24,7 +24,7 @@ public class CmdProcess {
 	protected static void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String result = CmdProcess.getBody(req);
 		String[] array = result.split("\"");
-		CmdProcess.cmdProcess(array, resp);
+		cmdProcess(array, resp);
 		
 		System.out.println(result);
 	}
@@ -101,20 +101,23 @@ public class CmdProcess {
 					
 					break;
 					
-				case "faceRectangle\\":
-					// 얼굴인식 처리하는 부분
-					emotion = new EstimationAnalysis();
-					emotion.analysis(array);
-					
-					break;
+//				case "faceRectangle\\":
+//					// 얼굴인식 처리하는 부분
+//					emotion = new EstimationAnalysis();
+//					emotion.analysis(array);
+//					
+//					break;
 					
 				case "imgSave\\":
 					// 이미지 전송 버튼이 클릭된 경우
 					for(int j = 0; j < array.length; j++){
 						if(array[j].equals("id")){
 							loginID = array[j+2];
-						}else if(array[j].equals("imgAddr")){
+						}else if(array[j].equals("filename")){
 							imgAddress = array[j+2];
+						}else if(array[j].equals("faceRectangle")){
+							emotion = new EstimationAnalysis(imgAddress);
+							emotion.analysis(array);
 						}
 					}
 					
@@ -140,7 +143,7 @@ public class CmdProcess {
 						resp.getWriter().print(album.length);
 
 						for(i = 0; i<album.length; i++){
-							resp.getWriter().print(album[0]);	
+							resp.getWriter().print(album[i]);	
 						}
 						
 					}else{
