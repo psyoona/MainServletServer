@@ -41,6 +41,5 @@ public class ImageServlet extends HttpServlet{
 		}
 		
 		System.out.println("get!~");
-	}		
-	
+	}	
 }

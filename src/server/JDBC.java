@@ -12,7 +12,12 @@ public class JDBC {
 	static PreparedStatement pstmt = null;
 	static ResultSet rs = null;
 	
+	static String db_id;
+	static String db_pw;
+	
 	public JDBC(){
+		db_id = "scott";
+		db_pw = "mobile";
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch (ClassNotFoundException e) {
@@ -25,7 +30,7 @@ public class JDBC {
 		
 		try{
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-			con = DriverManager.getConnection(dburl, "scott", "tiger");
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			System.out.println("데이터 베이스 연결 완료");
 			
 		} catch(IllegalArgumentException e){
@@ -43,7 +48,7 @@ public class JDBC {
 		// 회원가입 정보를 등록하는 메소드
 		try{
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-			con = DriverManager.getConnection(dburl, "scott", "tiger");
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			
 //			System.out.println(id + " " + pw + " " + nickname);
 			pstmt = con.prepareStatement("INSERT INTO userList VALUES(?, ?, ?)");
@@ -70,7 +75,7 @@ public class JDBC {
 		String id_db, pw_db;
 		try{
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-			con = DriverManager.getConnection(dburl, "scott", "tiger");
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			
 			pstmt = con.prepareStatement("SELECT * FROM userList");
 			rs = pstmt.executeQuery();
@@ -104,7 +109,7 @@ public class JDBC {
 		String id_db;
 		try{
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-			con = DriverManager.getConnection(dburl, "scott", "tiger");
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			
 			pstmt = con.prepareStatement("SELECT * FROM userList");
 			rs = pstmt.executeQuery();
