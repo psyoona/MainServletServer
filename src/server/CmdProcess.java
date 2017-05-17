@@ -17,6 +17,8 @@ public class CmdProcess {
 	static String loginID; // 로그인된 아이디를 임시로 저장하기 위한 변수
 	static String imgAddress; // 이미지 경로를 임시로 저장해두기 위한 변수
 	
+	static String[] album; // 데이터베이스에서 가져온 앨범 목록을 가지고 있을 변수
+	
 	static EstimationAnalysis emotion; // 감정 분석하기 위한 클래스
 	
 	protected static void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -123,6 +125,29 @@ public class CmdProcess {
 					
 				case "showAlbum":
 					// 앨범 보기 버튼이 클릭된 경우
+					for(int j = 0; j < array.length; j++){
+						if(array[j].equals("id")){
+							loginID = array[j+2];
+						}
+					}
+					
+					adminJDBC = new JDBC();
+					album = adminJDBC.showAlbum(loginID);
+					
+					if(album != null){
+						// 서버에 저장된 사진이 있는 경우
+						// 우선 사진의 갯수를 먼저 전송한다.
+						resp.getWriter().print(album.length);
+
+						for(i = 0; i<album.length; i++){
+							resp.getWriter().print(album[0]);	
+						}
+						
+					}else{
+						// 서버에 저장된 사진이 없는 경우
+						resp.getWriter().print("notHave");
+					}
+					
 					break;
 					
 				case "fixPicture":

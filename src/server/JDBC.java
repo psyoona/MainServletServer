@@ -163,4 +163,37 @@ public class JDBC {
 		}
 		return false;
 	}
+
+	@SuppressWarnings("null")
+	public String[] showAlbum(String loginID) {
+		// 사진 경로를 가져와서 유저에게 전달하는 메소드
+		String id_db;
+		String[] imgPath = null;
+		try{
+			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
+			
+			pstmt = con.prepareStatement("SELECT * FROM imgAddr");
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				id_db = rs.getString("id");
+				if(id_db.equals(loginID)){
+					// 데이터베이스에 일치하는 아이디가 있는 경우
+					imgPath[0] = rs.getString("addr");
+				}
+			}			
+			
+		} catch(IllegalArgumentException e){
+			System.out.println("입력 형태를 확인하세요");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if(con != null){try{con.close();}catch(Exception e){}}
+			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
+			if(rs != null){try{rs.close();}catch(Exception e){}}
+		}
+		return imgPath;
+		
+	}
 }
