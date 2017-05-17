@@ -44,6 +44,33 @@ public class JDBC {
 		}
 	}
 	
+	public static boolean saveImg(String id, String imgAddr){
+		// 아이디와 이미지 경로를 데이터베이스에 저장하기 위한 메소드
+		try{
+			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
+			
+			pstmt = con.prepareStatement("INSERT INTO imgAddr VALUES(?,?)");
+			pstmt.setString(1,  id);
+			pstmt.setString(2, imgAddr);
+			pstmt.executeUpdate();
+			
+			System.out.println("아이디와 사진 경로 저장 완료");			
+			
+		} catch(IllegalArgumentException e){
+			System.out.println("입력 형탤를 확인하세요");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if(con != null){try{con.close();}catch(Exception e){}}
+			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
+			if(rs != null){try{rs.close();}catch(Exception e){}}
+		}
+		
+		
+		return false;
+	}
+	
 	public static void registerDB(String id, String pw, String nickname){
 		// 회원가입 정보를 등록하는 메소드
 		try{

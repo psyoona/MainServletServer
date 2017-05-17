@@ -21,5 +21,4 @@ public class MakeDirectory {
             System.out.println("created directory successfully!");
         }
 	}	
-	
 }

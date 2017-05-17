@@ -14,6 +14,8 @@ public class CmdProcess {
 	static JDBC adminJDBC;
 	static boolean checkLogin; // 로그인 처리 되었는지 체크하는 변수
 	static boolean checkID; // 중복아이디가 있는지 처리하는 변수
+	static String loginID; // 로그인된 아이디를 임시로 저장하기 위한 변수
+	static String imgAddress; // 이미지 경로를 임시로 저장해두기 위한 변수
 	
 	static EstimationAnalysis emotion; // 감정 분석하기 위한 클래스
 	
@@ -104,6 +106,21 @@ public class CmdProcess {
 					
 					break;
 					
+				case "imgSave\\":
+					// 이미지 전송 버튼이 클릭된 경우
+					for(int j = 0; j < array.length; j++){
+						if(array[j].equals("id")){
+							loginID = array[j+2];
+						}else if(array[j].equals("imgAddr")){
+							imgAddress = array[j+2];
+						}
+					}
+					
+					adminJDBC = new JDBC();
+					adminJDBC.saveImg(loginID, imgAddress);
+					
+					break;
+					
 				case "showAlbum":
 					// 앨범 보기 버튼이 클릭된 경우
 					break;
@@ -118,7 +135,7 @@ public class CmdProcess {
 					
 				}			
 			}
-		}
+		}		
 
 		@SuppressWarnings("static-access")
 		public static String getBody(HttpServletRequest request) throws IOException {
