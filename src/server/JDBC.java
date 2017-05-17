@@ -34,7 +34,7 @@ public class JDBC {
 			System.out.println("데이터 베이스 연결 완료");
 			
 		} catch(IllegalArgumentException e){
-			System.out.println("입력 형탤를 확인하세요");
+			System.out.println("입력 형태를 확인하세요");
 		}catch(SQLException e){
 			e.printStackTrace();
 		}finally{
@@ -58,16 +58,14 @@ public class JDBC {
 			System.out.println("아이디와 사진 경로 저장 완료");			
 			
 		} catch(IllegalArgumentException e){
-			System.out.println("입력 형탤를 확인하세요");
+			System.out.println("입력 형태를 확인하세요");
 		}catch(SQLException e){
 			e.printStackTrace();
 		}finally{
 			if(con != null){try{con.close();}catch(Exception e){}}
 			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
 			if(rs != null){try{rs.close();}catch(Exception e){}}
-		}
-		
-		
+		}		
 		return false;
 	}
 	
@@ -90,7 +88,7 @@ public class JDBC {
 			MakeDirectory.makeDirectory(id);
 			
 		} catch(IllegalArgumentException e){
-			System.out.println("입력 형탤를 확인하세요");
+			System.out.println("입력 형태를 확인하세요");
 		}catch(SQLException e){
 			e.printStackTrace();
 		}finally{
@@ -124,7 +122,7 @@ public class JDBC {
 			}			
 			
 		} catch(IllegalArgumentException e){
-			System.out.println("입력 형탤를 확인하세요");
+			System.out.println("입력 형태를 확인하세요");
 		}catch(SQLException e){
 			e.printStackTrace();
 		}finally{
@@ -155,7 +153,7 @@ public class JDBC {
 			}			
 			
 		} catch(IllegalArgumentException e){
-			System.out.println("입력 형탤를 확인하세요");
+			System.out.println("입력 형태를 확인하세요");
 		}catch(SQLException e){
 			e.printStackTrace();
 		}finally{
