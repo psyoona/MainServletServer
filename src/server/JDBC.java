@@ -25,7 +25,7 @@ public class JDBC {
 		}
 	}
 	
-	public static void startDB(){
+	public static void checkDB(){
 		// 데이터베이스가 정상적으로 연결되었는지 확인하는 메소드		
 		
 		try{

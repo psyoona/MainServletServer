@@ -34,7 +34,7 @@ public class CmdProcess {
 				switch(array[i]){
 				// 어떤 버튼이 클릭되었는지에 따라 처리되는 부분
 				case "check":
-					// 아이디 중복확인				
+					// 아이디 중복확인 버튼이 클릭된 경우		
 					id = null;
 					for(int j = 0; j < array.length; j++){
 						if(array[j].equals("id")){
@@ -68,14 +68,11 @@ public class CmdProcess {
 						}
 					}
 					
-//					System.out.println(id + " " + pw + " " + nickname);
-					
 					adminJDBC = new JDBC();
 					adminJDBC.registerDB(id, pw, nickname);
 					break;
 				
-				case "login":
-					
+				case "login":					
 					// 로그인 버튼이 클릭된 경우				
 					id = null; pw = null; nickname = null;
 					for(int j = 0; j < array.length; j++){
@@ -85,15 +82,19 @@ public class CmdProcess {
 							pw = array[j+2];
 						}
 					}
+					
 					adminJDBC = new JDBC();
 					checkLogin = adminJDBC.loginDB(id, pw);
 					if(checkLogin){
 						// 로그인 정보가 일치하는 경우
+						// Ionic client에게 success라는 메시지를 보낸다.
 						resp.getWriter().print("success");
 					}else{
 						// 로그인 정보가 일치하지 않는 경우
+						// Ionic client에게 fail이라는 메시지를 보낸다.
 						resp.getWriter().print("fail");
 					}
+					
 					break;
 					
 				case "faceRectangle\\":
@@ -101,17 +102,14 @@ public class CmdProcess {
 					emotion = new EstimationAnalysis();
 					emotion.analysis(array);
 					
-//					for(int j = 0; j < array.length; j++){
-//						if(array[j].equals("happiness\\")){
-//							System.out.println(array[j+1]);
-//						}
-//					}
 					break;
 					
 				case "showAlbum":
+					// 앨범 보기 버튼이 클릭된 경우
 					break;
 					
 				case "fixPicture":
+					// 사진 수정 버튼이 클릭된 경우
 					break;
 					
 				default:
@@ -124,9 +122,9 @@ public class CmdProcess {
 
 		@SuppressWarnings("static-access")
 		public static String getBody(HttpServletRequest request) throws IOException {
-			// 데이터베이스가 연결되었는지 확인하는 부분
+			// 데이터베이스가 정상적으로 연결되었는지 확인하는 부분
 			adminJDBC = new JDBC();
-			adminJDBC.startDB();
+			adminJDBC.checkDB();
 
 			String body = null;
 			StringBuilder stringBuilder = new StringBuilder();
