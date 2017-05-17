@@ -59,6 +59,9 @@ public class JDBC {
 			
 			System.out.println("저장 완료");
 			
+			// 회원가입이 완료됨과 동시에 폴더를 생성한다.
+			MakeDirectory.makeDirectory(id);
+			
 		} catch(IllegalArgumentException e){
 			System.out.println("입력 형탤를 확인하세요");
 		}catch(SQLException e){
@@ -68,8 +71,9 @@ public class JDBC {
 			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
 			if(rs != null){try{rs.close();}catch(Exception e){}}
 		}
-	}
+	}	
 	
+
 	public static boolean loginDB(String id, String pw){
 		// 로그인이 시도된 경우
 		String id_db, pw_db;

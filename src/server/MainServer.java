@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MainServer extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 1L;	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,7 +20,5 @@ public class MainServer extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("euc-kr");
 		CmdProcess.process(req, resp);
-	}
-
-	
+	}	
 }
