@@ -88,8 +88,8 @@ public class EstimationAnalysis {
 				emotion[7] = Double.valueOf(temp);
 				
 				break;				
-			} // End Switch					
-		}// End for
+			} // End of Switch					
+		}// End of for
 		decideEmotion();
-	}// End analysis Function
+	}// End of analysis Function
 }

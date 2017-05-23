@@ -38,8 +38,10 @@ public class ImageServlet extends HttpServlet{
 			out.close();
 		} catch (Exception e) {
 			// TODO: handle exception
-		}
-		
-		System.out.println("get!~");
+		}		
 	}	
+	
+	void showImage(String id){
+		
+	}
 }

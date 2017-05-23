@@ -18,10 +18,10 @@ import javax.imageio.ImageIO;
  */
 
 public class InsertText {
-	public static void gogo() {
+	public static void insertText(String text) {
 		long startTime = System.currentTimeMillis();
 		String subject = "사진의 제목";
-		String year = "2015";
+		String year = "2017";
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		Date date = new Date();

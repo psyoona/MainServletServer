@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -92,11 +93,11 @@ public class CmdProcess {
 					if(checkLogin){
 						// 로그인 정보가 일치하는 경우
 						// Ionic client에게 success라는 메시지를 보낸다.
-						resp.getWriter().print("success");
+						resp.getWriter().print(Constants.SUCCESS);
 					}else{
 						// 로그인 정보가 일치하지 않는 경우
 						// Ionic client에게 fail이라는 메시지를 보낸다.
-						resp.getWriter().print("fail");
+						resp.getWriter().print(Constants.FAIL);
 					}
 					
 					break;
@@ -108,21 +109,26 @@ public class CmdProcess {
 //					
 //					break;
 					
-				case "imgSave\\":
+				case "imgSave":
 					// 이미지 전송 버튼이 클릭된 경우
 					for(int j = 0; j < array.length; j++){
 						if(array[j].equals("id")){
 							loginID = array[j+2];
 						}else if(array[j].equals("filename")){
 							imgAddress = array[j+2];
-						}else if(array[j].equals("faceRectangle")){
+						}else if(array[j].equals("faceRectangle\\")){
 							emotion = new EstimationAnalysis(imgAddress);
 							emotion.analysis(array);
 						}
 					}
 					
-					adminJDBC = new JDBC();
-					adminJDBC.saveImg(loginID, imgAddress);
+					try {
+						adminJDBC = new JDBC();
+						adminJDBC.saveImg(loginID, imgAddress);
+					} catch (SQLIntegrityConstraintViolationException e) {
+						System.out.println("무결성 제약 조건에 위배됩니다.");
+						//e.printStackTrace();
+					}
 					
 					break;
 					
