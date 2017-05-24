@@ -18,6 +18,14 @@ public class JDBC {
 	static String db_id;
 	static String db_pw;
 	
+	static String resultPath; // db에서 가져온 경로
+	static String tempEmotion;
+	static String resultEmotion; // 결정된 감정
+	static String tempString;
+	static String resultString;
+	static double tempDouble;
+	static double resultDouble=0;
+	
 	public JDBC(){
 		db_id = "scott";
 		db_pw = "mobile";
@@ -34,7 +42,7 @@ public class JDBC {
 		try{
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 			con = DriverManager.getConnection(dburl, db_id, db_pw);
-			System.out.println("데이터 베이스 연결 완료");
+			System.out.println("데이터 베이스 연결 이상 없음");
 			
 		} catch(IllegalArgumentException e){
 			System.out.println("입력 형태를 확인하세요");
@@ -46,7 +54,7 @@ public class JDBC {
 			if(rs != null){try{rs.close();}catch(Exception e){}}
 		}
 	}
-	
+		
 	public static boolean saveImg(String id, String imgAddr) throws SQLIntegrityConstraintViolationException{
 		// 아이디와 이미지 경로를 데이터베이스에 저장하기 위한 메소드
 		try{
@@ -136,6 +144,47 @@ public class JDBC {
 		}
 		return false;
 	}
+	
+
+	public static String getEmotion(String[] fileName, int count) throws InterruptedException{
+		try{
+			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
+			
+			pstmt = con.prepareStatement("SELECT * FROM emotion");
+			rs = pstmt.executeQuery();
+			
+			Thread.sleep(2000);
+			
+			while(rs.next()){
+				resultPath = rs.getString("imgPath");
+				for(int i=0; i < count; i++){
+					if(fileName[i].equals(resultPath)){
+						tempEmotion = rs.getString("emotion");
+						tempString = rs.getString("value");
+						tempDouble = Double.valueOf(tempString);
+						if(tempDouble > resultDouble){
+							resultDouble = tempDouble;
+							resultEmotion = tempEmotion;
+							System.out.println("test " +resultEmotion);
+						}						
+					}
+				}
+			} // End of While			
+			return resultEmotion;
+			
+		} catch(IllegalArgumentException e){
+			System.out.println("입력 형태를 확인하세요");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if(con != null){try{con.close();}catch(Exception e){}}
+			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
+			if(rs != null){try{rs.close();}catch(Exception e){}}
+		}
+		
+		return null;
+	}
 
 	public boolean checkID(String id) {
 		// 아이디 중복 체크 메소드
@@ -166,7 +215,7 @@ public class JDBC {
 			if(rs != null){try{rs.close();}catch(Exception e){}}
 		}
 		return false;
-	}
+	}	
 
 	@SuppressWarnings("null")
 	public String[] showAlbum(String loginID) {
@@ -201,16 +250,17 @@ public class JDBC {
 		
 	}
 
-	public void saveEmotion(String imgPath, Emotion firstEmotion) {
+	public void saveEmotion(String imgPath, Emotion firstEmotion, Double value) {
 		try{
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			
 			System.out.println("Save Emotion Function");
 			
-			pstmt = con.prepareStatement("INSERT INTO emotion VALUES(?, ?)");
+			pstmt = con.prepareStatement("INSERT INTO emotion VALUES(?, ?, ?)");
 			pstmt.setString(1, imgPath);
 			pstmt.setString(2, String.valueOf(firstEmotion));
+			pstmt.setDouble(3, value);
 			pstmt.executeUpdate();
 			
 			System.out.println("저장 완료");

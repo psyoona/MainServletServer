@@ -33,7 +33,7 @@ public class InsertText {
 		try {
 			bi = ImageIO.read(loadImage);
 		} catch (IOException e) {
-			print("이미지 불러오다가 에러 나쓔..ㅜㅜ");
+			System.out.println("이미지 불러오다가 에러 발생");
 			e.printStackTrace();
 		}
 
