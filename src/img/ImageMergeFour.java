@@ -10,15 +10,17 @@ import javax.imageio.ImageIO;
 import server.Constants;
 
 public class ImageMergeFour extends ImageMerge{
-	String[] filename = new String[4];
-	String emotion;
-	public ImageMergeFour(String[] filename,String emotion){
+	
+	public ImageMergeFour(String[] filename,String emotion, String loginID){
+		this.filename = new String[4];
+		
 		this.filename[0]=filename[0];
 		this.filename[1]=filename[1];
 		this.filename[2]=filename[2];
 		this.filename[3]=filename[3];
 
 		this.emotion=emotion;
+		this.loginID = "/"+loginID;
 	}
 	public void merge(){
 		try {

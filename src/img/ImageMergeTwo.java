@@ -9,12 +9,11 @@ import javax.imageio.ImageIO;
 
 import server.Constants;
 
-public class ImageMergeTwo extends ImageMerge{
-	String[] filename = new String[2];
-	String emotion;
-	String loginID;
+public class ImageMergeTwo extends ImageMerge{	
 	
 	public ImageMergeTwo(String[] filename, String emotion, String loginID) {
+		this.filename = new String[2];
+		
 		this.filename[0] = filename[0];
 		this.filename[1] = filename[1];
 		this.emotion = emotion;

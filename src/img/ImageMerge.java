@@ -1,6 +1,9 @@
 package img;
 
 public class ImageMerge {
+	protected String loginID;
+	protected String[] filename;
+	protected String emotion;
 	
 	public ImageMerge(){
 		// Constructor

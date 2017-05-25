@@ -9,22 +9,23 @@ import javax.imageio.ImageIO;
 
 import server.Constants;
 
-public class ImageMergeThree extends ImageMerge{
-	String[] filename = new String[3];
-	String emotion;
+public class ImageMergeThree extends ImageMerge{	
 
-	public ImageMergeThree(String[] filename, String emotion) {
+	public ImageMergeThree(String[] filename, String emotion, String loginID) {
+		this.filename = new String[3];
+		
 		this.filename[0] = filename[0];
 		this.filename[1] = filename[1];
 		this.filename[2] = filename[2];
 		this.emotion = emotion;
+		this.loginID = "/"+loginID;
 	}
 
 	public void merge() {
 		try {
-			BufferedImage image1 = ImageIO.read(new File(Constants.IMG_PATH + filename[0]));
-			BufferedImage image2 = ImageIO.read(new File(Constants.IMG_PATH + filename[1]));
-			BufferedImage image3 = ImageIO.read(new File(Constants.IMG_PATH + filename[2]));
+			BufferedImage image1 = ImageIO.read(new File(Constants.IMG_PATH + this.loginID + "/album/" +filename[0]));
+			BufferedImage image2 = ImageIO.read(new File(Constants.IMG_PATH + this.loginID + "/album/" +filename[1]));
+			BufferedImage image3 = ImageIO.read(new File(Constants.IMG_PATH + this.loginID + "/album/" +filename[1]));
 			BufferedImage happy = ImageIO.read(new File(Constants.IMG_PATH + emotion + ".jpg"));
 
 			// BufferedImage mergedImage = new

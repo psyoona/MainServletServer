@@ -55,7 +55,7 @@ public class ImageResizeFour extends ImageResize{
 			ImageIO.write(newImage3, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + filename[2]));
 			ImageIO.write(newImage4, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + filename[3]));
 
-			ImageMergeFour imgmer = new ImageMergeFour(filename, emotion);
+			ImageMergeFour imgmer = new ImageMergeFour(filename, emotion, loginID);
 			imgmer.merge();
 
 		} catch (IOException ioe) {
