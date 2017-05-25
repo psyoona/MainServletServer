@@ -42,8 +42,8 @@ public class CmdProcess {
 	// 입력값에 따라 처리해줄 부분
 		@SuppressWarnings("static-access")
 		public static void cmdProcess(String[] array, HttpServletResponse resp) throws IOException {
-			String id=null, pw=null, nickname=null;		
-			System.out.println("호출되었음");
+			String id=null, pw=null;	
+			
 			for (int i = 0; i < array.length; i++){
 				switch(array[i]){
 				// 어떤 버튼이 클릭되었는지에 따라 처리되는 부분
@@ -54,46 +54,16 @@ public class CmdProcess {
 					break;
 				
 				case "register":
-					// 회원가입 작성완료 버튼이 클릭된 경우
-					System.out.println("회원가입 요청이 들어옴");
+					// 회원가입 작성완료 버튼이 클릭된 경우					
+					Register info = new Register();
+					info.register(array);				
 					
-					id = null; pw = null; nickname = null;
-					for(int j = 0; j < array.length; j++){
-						if(array[j].equals("id")){
-							id = array[j+2];
-						}else if(array[j].equals("pw")){
-							pw = array[j+2];								
-						}else if(array[j].equals("nickname")){
-							nickname = array[j+2];
-						}
-					}
-					
-					adminJDBC = new JDBC();
-					adminJDBC.registerDB(id, pw, nickname);
 					break;
 				
 				case "login":					
 					// 로그인 버튼이 클릭된 경우				
-					id = null; pw = null; nickname = null;
-					for(int j = 0; j < array.length; j++){
-						if(array[j].equals("id")){
-							id = array[j+2];
-						}else if(array[j].equals("pw")){
-							pw = array[j+2];
-						}
-					}
-					
-					adminJDBC = new JDBC();
-					checkLogin = adminJDBC.loginDB(id, pw);
-					if(checkLogin){
-						// 로그인 정보가 일치하는 경우
-						// Ionic client에게 success라는 메시지를 보낸다.
-						resp.getWriter().print(Constants.SUCCESS);
-					}else{
-						// 로그인 정보가 일치하지 않는 경우
-						// Ionic client에게 fail이라는 메시지를 보낸다.
-						resp.getWriter().print(Constants.FAIL);
-					}
+					Login access = new Login();
+					access.login(array, resp);
 					
 					break;		
 					
