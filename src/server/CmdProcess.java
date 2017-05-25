@@ -48,23 +48,9 @@ public class CmdProcess {
 				switch(array[i]){
 				// 어떤 버튼이 클릭되었는지에 따라 처리되는 부분
 				case "check":
-					// 아이디 중복확인 버튼이 클릭된 경우		
-					id = null;
-					for(int j = 0; j < array.length; j++){
-						if(array[j].equals("id")){
-							id = array[j+2];
-						}
-					}
-					
-					adminJDBC = new JDBC();
-					checkID = adminJDBC.checkID(id);
-					if(checkID){
-						// 중복된 아이디가 있는 경우
-						resp.getWriter().print("using");
-					}else{
-						// 중복된 아이디가 없는 경우
-						resp.getWriter().print("notusing");
-					}
+					// 아이디 중복확인 버튼이 클릭된 경우
+					ID_Check idCheck = new ID_Check();
+					idCheck.loginCheck(array, resp);										
 					break;
 				
 				case "register":
