@@ -24,11 +24,19 @@ public class ImageMergeTwo extends ImageMerge{
 		try {
 			BufferedImage image1 = ImageIO.read(new File(Constants.IMG_PATH + this.loginID + "/album/" +filename[0]));
 			BufferedImage image2 = ImageIO.read(new File(Constants.IMG_PATH + this.loginID + "/album/" +filename[1]));
-			BufferedImage happy = ImageIO.read(new File(Constants.IMG_PATH + "emotion/happy.jpg"));
-
-			// BufferedImage mergedImage = new
-			// BufferedImage(happy.getWidth(),happy.getHeight(),
-			// BufferedImage.TYPE_INT_RGB);
+			BufferedImage happy = null;
+			if(emotion.equals("happiness")){
+				happy = ImageIO.read(new File(Constants.IMG_PATH + "emotion/happy.jpg"));
+			}else if(emotion.equals("neutral")){
+				happy = ImageIO.read(new File(Constants.IMG_PATH + "emotion/neutral.jpg"));
+			}else if(emotion.equals("sadness")){
+				happy = ImageIO.read(new File(Constants.IMG_PATH + "emotion/sadness.jpg"));
+			}else if(emotion.equals("surprise")){
+				happy = ImageIO.read(new File(Constants.IMG_PATH + "emotion/surprise.jpg"));
+			}else{
+				happy = ImageIO.read(new File(Constants.IMG_PATH + "emotion/happy.jpg"));
+			}
+			
 			Graphics2D graphics = (Graphics2D) happy.getGraphics();
 			graphics.drawImage(image1, 15, happy.getHeight() / 20, null);
 			graphics.drawImage(image2, happy.getWidth() / 2, happy.getHeight() / 20, null);

@@ -152,9 +152,7 @@ public class JDBC {
 			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			
 			pstmt = con.prepareStatement("SELECT * FROM emotion");
-			rs = pstmt.executeQuery();
-			
-			Thread.sleep(2000);
+			rs = pstmt.executeQuery();			
 			
 			while(rs.next()){
 				resultPath = rs.getString("imgPath");

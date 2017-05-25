@@ -37,7 +37,6 @@ public class ImageResizeTwo extends ImageResize{
 			imgmer.merge();
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
-			// TODO: handle exception
 		}
 	}
 }

@@ -29,7 +29,7 @@ public class EstimationAnalysis {
 	public static void saveEmotion(){
 		// 결정된 하나의 감정을 저장하기 위한 메소드
 		JDBC adminJDBC = new JDBC();
-		System.out.println(maxValue);
+//		System.out.println(maxValue);
 		adminJDBC.saveEmotion(imgPath, firstEmotion, maxValue);
 		System.out.println("이 사진의 Emotion은 "+ firstEmotion +" 입니다.");
 	}	
@@ -48,58 +48,57 @@ public class EstimationAnalysis {
 	
 	public static void analysis(String[] result){
 		// 분석된 값을 변수에 입력시키는 메소드		
-		for(int j = 0; j < result.length; j++){			
-			switch(result[j]){
-			case "anger\\":
-				temp = result[j+1].substring(1, result[j+1].length()-2);
-				tempDouble = Double.valueOf(temp);
-				emotion[0] = Double.parseDouble(String.format("%.8f", tempDouble));
-				//System.out.println(emotion[0]);
+		for(int j = 0; j < result.length; j++){
+			try{
+				switch(result[j]){
+				case "anger\\":
+					temp = result[j+1].substring(1, result[j+1].length()-2);
+					tempDouble = Double.valueOf(temp);
+					emotion[0] = Double.parseDouble(String.format("%.6f", tempDouble));
+					//System.out.println(emotion[0]);
+					
+					break;
+				case "contempt\\":
+					temp = result[j+1].substring(1, result[j+1].length()-2);
+					tempDouble = Double.valueOf(temp);
+					emotion[1] = Double.parseDouble(String.format("%.6f", tempDouble));
+					break;
+				case "disgust\\":
+					temp = result[j+1].substring(1, result[j+1].length()-2);
+					tempDouble = Double.valueOf(temp);
+					emotion[2] = Double.parseDouble(String.format("%.6f", tempDouble));
+					break;
+				case "fear\\":
+					temp = result[j+1].substring(1, result[j+1].length()-2);
+					tempDouble = Double.valueOf(temp);
+					emotion[3] = Double.parseDouble(String.format("%.6f", tempDouble));
+					break;
+				case "happiness\\":
+					temp = result[j+1].substring(1, result[j+1].length()-2);
+					tempDouble = Double.valueOf(temp);
+					emotion[4] = Double.parseDouble(String.format("%.6f", tempDouble));
+					break;
+				case "neutral\\":
+					temp = result[j+1].substring(1, result[j+1].length()-2);
+					tempDouble = Double.valueOf(temp);
+					emotion[5] = Double.parseDouble(String.format("%.6f", tempDouble));
+					break;
+				case "sadness\\":
+					temp = result[j+1].substring(1, result[j+1].length()-2);
+					tempDouble = Double.valueOf(temp);
+					emotion[6] = Double.parseDouble(String.format("%.6f", tempDouble));
+					break;
+				case "surprise\\":
+					// 문제 발생 가능성
+					temp = result[j+1].substring(1, result[j+1].length()-3);
+					tempDouble = Double.valueOf(temp);
+					emotion[7] = Double.parseDouble(String.format("%.6f", tempDouble));
+					break;				
+				} // End of Switch					
 				
-				break;
-			case "contempt\\":
-				temp = result[j+1].substring(1, result[j+1].length()-2);
-				tempDouble = Double.valueOf(temp);
-				emotion[1] = Double.parseDouble(String.format("%.8f", tempDouble));
-				//System.out.println(emotion[1]);
-				break;
-			case "disgust\\":
-				temp = result[j+1].substring(1, result[j+1].length()-2);
-				tempDouble = Double.valueOf(temp);
-				emotion[2] = Double.parseDouble(String.format("%.8f", tempDouble));
-				//System.out.println(emotion[2]);
-				break;
-			case "fear\\":
-				temp = result[j+1].substring(1, result[j+1].length()-2);
-				tempDouble = Double.valueOf(temp);
-				emotion[3] = Double.parseDouble(String.format("%.8f", tempDouble));
-				//System.out.println(emotion[3]);
-				break;
-			case "happiness\\":
-				temp = result[j+1].substring(1, result[j+1].length()-2);
-				tempDouble = Double.valueOf(temp);
-				emotion[4] = Double.parseDouble(String.format("%.8f", tempDouble));
-				//System.out.println(emotion[4]);
-				break;
-			case "neutral\\":
-				temp = result[j+1].substring(1, result[j+1].length()-2);
-				tempDouble = Double.valueOf(temp);
-				emotion[5] = Double.parseDouble(String.format("%.8f", tempDouble));
-				//System.out.println(emotion[5]);
-				break;
-			case "sadness\\":
-				temp = result[j+1].substring(1, result[j+1].length()-2);
-				tempDouble = Double.valueOf(temp);
-				emotion[6] = Double.parseDouble(String.format("%.8f", tempDouble));
-				//System.out.println(emotion[6]);
-				break;
-			case "surprise\\":
-				temp = result[j+1].substring(1, result[j+1].length()-3);
-				tempDouble = Double.valueOf(temp);
-				emotion[7] = Double.parseDouble(String.format("%.8f", tempDouble));
-				//System.out.println(emotion[7]);
-				break;				
-			} // End of Switch					
+			}catch(NumberFormatException ne){
+				
+			}		
 		}// End of for
 		decideEmotion();		
 	}// End of analysis Function
