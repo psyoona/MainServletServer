@@ -35,10 +35,9 @@ public class CmdProcess {
 
 	// 입력값에 따라 처리해줄 부분
 	public static void cmdProcess(String[] array, HttpServletResponse resp) throws IOException {
-
+		// 어떤 버튼이 클릭되었는지에 따라 처리하기 위한 for-switch문
 		for (int i = 0; i < array.length; i++) {
 			switch (array[i]) {
-			// 어떤 버튼이 클릭되었는지에 따라 처리되는 부분
 			case "check":
 				// 아이디 중복확인 버튼이 클릭된 경우
 				ID_Check idCheck = new ID_Check();
@@ -67,7 +66,6 @@ public class CmdProcess {
 				// 앨범 보기 버튼이 클릭된 경우
 				ShowAlbum album = new ShowAlbum();
 				album.showAlbum(array, resp);
-
 				break;
 
 			case "makealbum":

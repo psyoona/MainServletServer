@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /*
- * CORS ¿¹·¯ »§Âî
+ * CORS ¿¡·¯ ¹æÁö
  */
 public class CorsFilter implements Filter{
 

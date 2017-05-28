@@ -23,7 +23,7 @@
   
   <servlet>
   	<servlet-name>Image</servlet-name>
-  	<servlet-class>server.ImageServlet</servlet-class>
+  	<servlet-class>imgServlet.ImageServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
