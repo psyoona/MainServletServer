@@ -28,9 +28,11 @@ public class CmdProcess {
 			throws ServletException, IOException {
 		String result = CmdProcess.getBody(req);
 		String[] array = result.split("\"");
+		System.out.println(result);
+		
+		
 		cmdProcess(array, resp);
 
-		System.out.println(result);
 	}
 
 	// 입력값에 따라 처리해줄 부분
@@ -63,13 +65,13 @@ public class CmdProcess {
 				break;
 
 			case "showAlbum":
-				// 앨범 보기 버튼이 클릭된 경우
-				ShowAlbum album = new ShowAlbum();
-				album.showAlbum(array, resp);
+				// 가운데 history 버튼이 클릭된 경우
+//				ShowMergeAlbum album = new ShowMergeAlbum();
+//				album.showMergeAlbum(array, resp);
 				break;
 
-			case "makealbum":
-				// 사진 수정 버튼이 클릭된 경우
+			case "makeAlbum":
+				// 사진 전송 후 자동으로 앨범 만들기 기능이 실행됨
 				MakeAlbum mkAlbum = new MakeAlbum();
 				mkAlbum.makeAlbum(array, i);
 				break;

@@ -19,7 +19,10 @@ public class Register {
 		}
 		
 		adminJDBC = new JDBC();
+		// UserList 데이터베이스에 아이디, 비밀번호, 닉네임을 등록한다.
 		adminJDBC.registerDB(id, pw, nickname);
+		// MergeCount 데이터베이스에 아이디를 등록하고 카운트값을 초기화시킨다.
+		adminJDBC.MergeCount(id);
 		
 	}
 }

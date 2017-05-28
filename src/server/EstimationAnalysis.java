@@ -35,7 +35,8 @@ public class EstimationAnalysis {
 	}	
 	
 	public static void decideEmotion(){
-		for(int i=0; i<emotion.length; i++){
+		for(int i=0; i < emotion.length; i++){
+//			System.out.println(emotion[i]);
 			if(emotion[i] >= maxValue){
 				maxValue = emotion[i];
 				firstEmotion = Emotion.values()[i];
@@ -46,10 +47,10 @@ public class EstimationAnalysis {
 		saveEmotion();
 	}// End of decideEmotion function
 	
-	public static void analysis(String[] result){
+	public static void analysis(String[] result, int faceCount){
 		// 분석된 값을 변수에 입력시키는 메소드		
 		for(int j = 0; j < result.length; j++){
-			try{
+			try{				
 				switch(result[j]){
 				case "anger\\":
 					temp = result[j+1].substring(1, result[j+1].length()-2);
@@ -89,10 +90,18 @@ public class EstimationAnalysis {
 					emotion[6] = Double.parseDouble(String.format("%.6f", tempDouble));
 					break;
 				case "surprise\\":
-					// 문제 발생 가능성
-					temp = result[j+1].substring(1, result[j+1].length()-3);
-					tempDouble = Double.valueOf(temp);
-					emotion[7] = Double.parseDouble(String.format("%.6f", tempDouble));
+					if(faceCount == 1){
+						System.out.println(faceCount + ": 1");
+						temp = result[j+1].substring(1, result[j+1].length()-3);
+						tempDouble = Double.valueOf(temp);
+						emotion[7] = Double.parseDouble(String.format("%.6f", tempDouble));						
+					}else{
+						System.out.println(faceCount + ": NOT 1");
+						temp = result[j+1].substring(1, result[j+1].length()-5);
+						tempDouble = Double.valueOf(temp);
+						emotion[7] = Double.parseDouble(String.format("%.6f", tempDouble));						
+						faceCount--;
+					}
 					break;				
 				} // End of Switch					
 				

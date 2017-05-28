@@ -12,12 +12,14 @@ import server.Constants;
 
 public class ImageResizeThree extends ImageResize{	
 
-	public void resize(String filename[], String emotion, String loginID) {
+	public BufferedImage resize(String fileOne, String fileTwo, String fileThree, String emotion, String loginID) {
 		try {
-			image1 = ImageIO.read(new File(Constants.IMG_PATH + loginID + filename[0]));
-			image2 = ImageIO.read(new File(Constants.IMG_PATH + loginID + filename[1]));
-			image3 = ImageIO.read(new File(Constants.IMG_PATH + loginID + filename[2]));
-			happy = ImageIO.read(new File(Constants.IMG_PATH + emotion + ".jpg"));
+			image1 = ImageIO.read(new File(Constants.IMG_PATH + loginID + fileOne));
+			image2 = ImageIO.read(new File(Constants.IMG_PATH + loginID + fileTwo));
+			image3 = ImageIO.read(new File(Constants.IMG_PATH + loginID + fileThree));
+			System.out.println(emotion);
+			happy = ImageIO.read(new File(Constants.IMG_PATH + "emotion/"+emotion + ".jpg"));
+			
 			resizeImage1 = image1.getScaledInstance(happy.getWidth() / 2 - happy.getWidth() / 42,
 					happy.getHeight() / 2 - happy.getHeight() / 20, Image.SCALE_SMOOTH);
 			resizeImage2 = image2.getScaledInstance(happy.getWidth() / 2 - happy.getWidth() / 42,
@@ -41,15 +43,16 @@ public class ImageResizeThree extends ImageResize{
 			g.dispose();
 			g2.dispose();
 			g3.dispose();
-			ImageIO.write(newImage1, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + filename[0]));
-			ImageIO.write(newImage2, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + filename[1]));
-			ImageIO.write(newImage3, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + filename[2]));
-			ImageMergeThree imgmer = new ImageMergeThree(filename, emotion, loginID);
-			imgmer.merge();
+			ImageIO.write(newImage1, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + fileOne));
+			ImageIO.write(newImage2, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + fileTwo));
+			ImageIO.write(newImage3, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + fileThree));
+			ImageMergeThree imgmer = new ImageMergeThree(fileOne, fileTwo, fileThree, emotion, loginID);
+			result = imgmer.merge();
 
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 			// TODO: handle exception
 		}
+		return result;
 	}
 }

@@ -43,7 +43,6 @@ public class JDBC {
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			System.out.println("데이터 베이스 연결 이상 없음");
-			
 		} catch(IllegalArgumentException e){
 			System.out.println("입력 형태를 확인하세요");
 		}catch(SQLException e){
@@ -66,7 +65,7 @@ public class JDBC {
 			pstmt.setString(2, imgAddr);
 			pstmt.executeUpdate();
 			
-			System.out.println("아이디와 사진 경로 저장 완료");			
+			System.out.println("아이디와 사진 경로 저장 완료");	
 			
 		} catch(IllegalArgumentException e){
 			System.out.println("입력 형태를 확인하세요");
@@ -94,7 +93,7 @@ public class JDBC {
 			pstmt.setString(3, nickname);
 			pstmt.executeUpdate();
 			
-			System.out.println("저장 완료");
+			System.out.println("회원 정보 저장 완료");
 			
 			// 회원가입이 완료됨과 동시에 폴더를 생성한다.
 			MakeDirectory.makeDirectory(id);
@@ -131,8 +130,7 @@ public class JDBC {
 						return true;
 					}
 				}
-			}			
-			
+			}		
 		} catch(IllegalArgumentException e){
 			System.out.println("입력 형태를 확인하세요");
 		}catch(SQLException e){
@@ -168,7 +166,7 @@ public class JDBC {
 						}						
 					}
 				}
-			} // End of While			
+			} // End of While
 			return resultEmotion;
 			
 		} catch(IllegalArgumentException e){
@@ -202,7 +200,6 @@ public class JDBC {
 					return true;
 				}
 			}			
-			
 		} catch(IllegalArgumentException e){
 			System.out.println("입력 형태를 확인하세요");
 		}catch(SQLException e){
@@ -233,7 +230,7 @@ public class JDBC {
 					// 데이터베이스에 일치하는 아이디가 있는 경우
 					imgPath[0] = rs.getString("addr");
 				}
-			}			
+			}		
 			
 		} catch(IllegalArgumentException e){
 			System.out.println("입력 형태를 확인하세요");
@@ -247,17 +244,51 @@ public class JDBC {
 		return imgPath;
 		
 	}
-
-	public void saveEmotion(String imgPath, Emotion firstEmotion, Double value) {
+	
+	public String[] showMergeAlbum(String loginID) {
+		// 사진 경로를 가져와서 유저에게 전달하는 메소드
+		String id_db;
+		String[] imgPath = null;
 		try{
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			
-			System.out.println("Save Emotion Function");
+			pstmt = con.prepareStatement("SELECT * FROM imgAddr");
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				id_db = rs.getString("id");
+				if(id_db.equals(loginID)){
+					// 데이터베이스에 일치하는 아이디가 있는 경우
+				}
+			}	
+			
+		} catch(IllegalArgumentException e){
+			System.out.println("입력 형태를 확인하세요");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if(con != null){try{con.close();}catch(Exception e){}}
+			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
+			if(rs != null){try{rs.close();}catch(Exception e){}}
+		}
+		return imgPath;
+		
+	}
+	
+
+	public void saveEmotion(String imgPath, Emotion firstEmotion, Double value) {
+		try{
+			String emotion = String.valueOf(firstEmotion);
+			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
+			
+//			System.out.println("Save Emotion Function");
 			
 			pstmt = con.prepareStatement("INSERT INTO emotion VALUES(?, ?, ?)");
+//			System.out.println(imgPath);
 			pstmt.setString(1, imgPath);
-			pstmt.setString(2, String.valueOf(firstEmotion));
+			pstmt.setString(2, emotion);
 			pstmt.setDouble(3, value);
 			pstmt.executeUpdate();
 			
@@ -272,5 +303,101 @@ public class JDBC {
 			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
 			if(rs != null){try{rs.close();}catch(Exception e){}}
 		}
+	}
+
+	/*
+	 * 아이디가 생성됨과 동시에 MergeCount 테이블에 아이디를 등록하고
+	 * count값을 0으로 초기화 시킨다. 
+	 */
+	public void MergeCount(String id) {
+		try{
+			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
+			
+//			System.out.println("Save Emotion Function");
+			
+			pstmt = con.prepareStatement("INSERT INTO mergeCount VALUES(?, ?)");
+			pstmt.setString(1, id);
+			pstmt.setInt(2, 0);
+			pstmt.executeUpdate();
+			
+			System.out.println("저장 완료");
+			
+		} catch(IllegalArgumentException e){
+			System.out.println("입력 형태를 확인하세요");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if(con != null){try{con.close();}catch(Exception e){}}
+			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
+			if(rs != null){try{rs.close();}catch(Exception e){}}
+		}
+	}
+
+	public void addCount(String id) {
+		int count=0;
+		// MergeCount에 있는 count 값을 1 증가시킨다.
+		try{
+			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
+			
+			pstmt = con.prepareStatement("SELECT * FROM mergeCount WHERE id='"+id+"'");
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				count = rs.getInt("count");
+				System.out.println("Here?");
+				
+			}
+			System.out.println(count);
+			count++;
+			System.out.println(count);
+			
+			//카운트를 증가시켰기 때문에 그대로 다시 저장만 해주면 됨.			
+			
+		} catch(IllegalArgumentException e){
+			System.out.println("입력 형태를 확인하세요");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if(con != null){try{con.close();}catch(Exception e){}}
+			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
+			if(rs != null){try{rs.close();}catch(Exception e){}}
+		}
+	}
+
+	public void saveMerge(String loginID, String path, String emotion) {
+		// 아이디와 이미지 경로를 데이터베이스에 저장하기 위한 메소드
+		try{
+			System.out.println("SaveMerge 내부 시작");
+			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+			System.out.println("10");
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
+			System.out.println("19");
+			
+			pstmt = con.prepareStatement("INSERT INTO imgMerge VALUES(?,?, ?)");
+			System.out.println("1");
+			pstmt.setString(1, loginID);
+			System.out.println("2");
+			pstmt.setString(2, path);
+			System.out.println("3");
+			pstmt.setString(3, emotion);
+			System.out.println("4");
+			pstmt.executeUpdate();
+			
+			System.out.println("SaveMerge 내부 끝");
+			
+			System.out.println("합성된 사진 저장 완료");			
+			
+		} catch(IllegalArgumentException e){
+			System.out.println("입력 형태를 확인하세요");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			if(con != null){try{con.close();}catch(Exception e){}}
+			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
+			if(rs != null){try{rs.close();}catch(Exception e){}}
+		}		
 	}
 }

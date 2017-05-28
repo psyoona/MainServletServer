@@ -29,7 +29,9 @@ public class ImageServlet extends HttpServlet{
 		try {
 			//이미지 주소 저장
 			//String imagePath = getServletContext().getRealPath("")+"images\\aa.jpg";
-			String imagePath = Constants.IMG_PATH+"root/album/frame.jpg";			
+			
+			String imagePath = Constants.IMG_PATH+"root/album/frame.jpg";
+			//imagePath = filePath;
 			
 			//inputStream : 파일을 1바이트씩 읽어옴
 			//BufferedInputStream : inputStream객체로 버퍼객체를 생성

@@ -9,6 +9,8 @@ public class ImageResize {
 	protected BufferedImage image3;
 	protected BufferedImage image4;
 
+	protected BufferedImage result;
+	
 	protected BufferedImage happy;
 	protected Image resizeImage1;
 	protected Image resizeImage2;
@@ -23,5 +25,10 @@ public class ImageResize {
 		// Constructor
 	}
 	
-	public void resize(String filename[], String emotion, String loginID){}
+	public BufferedImage resize(String fileOne, String fileTwo, String emotion, String loginID){
+		return null;}
+	public BufferedImage resize(String fileOne, String fileTwo, String fileThree, String emotion, String loginID){
+		return null;}
+	public BufferedImage resize(String fileOne, String fileTwo, String fileThree, String fileFour, String emotion, String loginID){
+		return happy;}
 }

@@ -12,10 +12,11 @@ import server.Constants;
 
 public class ImageResizeTwo extends ImageResize{	
 
-	public void resize(String filename[], String emotion, String loginID) {
+	public BufferedImage resize(String fileOne, String fileTwo, String emotion, String loginID) {
 		try {			
-			image1 = ImageIO.read(new File(Constants.IMG_PATH + loginID + filename[0]));
-			image2 = ImageIO.read(new File(Constants.IMG_PATH + loginID + filename[1]));
+			System.out.println("경로: "+Constants.IMG_PATH + loginID + fileOne);
+			image1 = ImageIO.read(new File(Constants.IMG_PATH + loginID + fileOne));
+			image2 = ImageIO.read(new File(Constants.IMG_PATH + loginID + fileTwo));
 			happy = ImageIO.read(new File(Constants.IMG_PATH + "emotion/happy.jpg"));
 			resizeImage1 = image1.getScaledInstance(happy.getWidth() / 2 - happy.getWidth() / 42,
 					happy.getHeight() - happy.getHeight() / 6, Image.SCALE_SMOOTH);
@@ -31,12 +32,17 @@ public class ImageResizeTwo extends ImageResize{
 			g2.drawImage(resizeImage2, 0, 0, null);
 			g.dispose();
 			g2.dispose();
-			ImageIO.write(newImage1, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + filename[0]));
-			ImageIO.write(newImage2, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + filename[1]));
-			ImageMergeTwo imgmer = new ImageMergeTwo(filename, emotion, loginID);
-			imgmer.merge();
+			ImageIO.write(newImage1, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + fileOne));
+			ImageIO.write(newImage2, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + fileTwo));
+			
+			
+			ImageMergeTwo imgmer = new ImageMergeTwo(fileOne, fileTwo, emotion, loginID);
+			System.out.println("merge() 시도 전");
+			result = imgmer.merge();
+			
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
+		return result;
 	}
 }
