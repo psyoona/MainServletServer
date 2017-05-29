@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import JDBC.JDBC;
+
 
 /*
  * 아이디 중복확인 기능

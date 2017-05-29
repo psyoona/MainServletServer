@@ -9,7 +9,7 @@ import java.io.File;
 public class MakeDirectory {
 	public MakeDirectory(){}
 	
-	static void makeDirectory(String userID){
+	public static void makeDirectory(String userID){
 		 //생성할 파일경로 지정
         String path = "D://img//" + userID;
         //파일 객체 생성

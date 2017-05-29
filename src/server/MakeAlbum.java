@@ -2,6 +2,7 @@ package server;
 
 import java.awt.image.BufferedImage;
 
+import JDBC.JDBC;
 import img.ImageResize;
 import img.ImageResizeFour;
 import img.ImageResizeThree;

@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import JDBC.JDBC;
+
 public class Login {
 	String id = null, pw = null;
 	JDBC adminJDBC;

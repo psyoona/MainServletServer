@@ -1,4 +1,4 @@
-package server;
+package JDBC;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 import server.EstimationAnalysis.Emotion;
+import server.MakeDirectory;
 
 public class JDBC {
 	static String dburl = null;

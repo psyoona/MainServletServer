@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import JDBC.JDBC;
+
 public class CmdProcess {
 	static String dburl = null;
 	static JDBC adminJDBC;

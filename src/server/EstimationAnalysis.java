@@ -1,5 +1,7 @@
 package server;
 
+import JDBC.JDBC;
+
 public class EstimationAnalysis {
 	// 받은 JSON 값으로부터 감정을 분석하는 클래스
 	// 감정 변수들

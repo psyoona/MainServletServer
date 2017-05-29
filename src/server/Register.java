@@ -1,5 +1,7 @@
 package server;
 
+import JDBC.JDBC;
+
 public class Register {
 	String id=null, pw=null, nickname=null;	
 	JDBC adminJDBC;

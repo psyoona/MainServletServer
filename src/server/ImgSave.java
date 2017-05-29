@@ -2,6 +2,8 @@ package server;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 
+import JDBC.JDBC;
+
 public class ImgSave {
 	JDBC adminJDBC;
 	String loginID, imgAddress;

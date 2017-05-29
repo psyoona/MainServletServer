@@ -37,7 +37,6 @@ public class ImageResizeTwo extends ImageResize{
 			
 			
 			ImageMergeTwo imgmer = new ImageMergeTwo(fileOne, fileTwo, emotion, loginID);
-			System.out.println("merge() ½Ãµµ Àü");
 			result = imgmer.merge();
 			
 		} catch (IOException ioe) {

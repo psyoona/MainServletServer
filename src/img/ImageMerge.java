@@ -2,8 +2,8 @@ package img;
 
 import java.awt.image.BufferedImage;
 
+import JDBC.JDBC;
 import server.Constants;
-import server.JDBC;
 
 public class ImageMerge {
 	protected String loginID;
