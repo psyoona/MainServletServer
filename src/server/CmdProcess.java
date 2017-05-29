@@ -66,6 +66,7 @@ public class CmdProcess {
 
 			case "showAlbum":
 				// 가운데 history 버튼이 클릭된 경우
+				System.out.println("showAlbum 호출");
 //				ShowMergeAlbum album = new ShowMergeAlbum();
 //				album.showMergeAlbum(array, resp);
 				break;

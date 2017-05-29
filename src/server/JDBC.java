@@ -283,10 +283,7 @@ public class JDBC {
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			
-//			System.out.println("Save Emotion Function");
-			
 			pstmt = con.prepareStatement("INSERT INTO emotion VALUES(?, ?, ?)");
-//			System.out.println(imgPath);
 			pstmt.setString(1, imgPath);
 			pstmt.setString(2, emotion);
 			pstmt.setDouble(3, value);
@@ -371,24 +368,15 @@ public class JDBC {
 		try{
 			System.out.println("SaveMerge 내부 시작");
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
-			System.out.println("10");
 			con = DriverManager.getConnection(dburl, db_id, db_pw);
-			System.out.println("19");
 			
 			pstmt = con.prepareStatement("INSERT INTO imgMerge VALUES(?,?, ?)");
-			System.out.println("1");
 			pstmt.setString(1, loginID);
-			System.out.println("2");
 			pstmt.setString(2, path);
-			System.out.println("3");
 			pstmt.setString(3, emotion);
-			System.out.println("4");
 			pstmt.executeUpdate();
 			
-			System.out.println("SaveMerge 내부 끝");
-			
-			System.out.println("합성된 사진 저장 완료");			
-			
+//			System.out.println("SaveMerge 내부 끝");			
 		} catch(IllegalArgumentException e){
 			System.out.println("입력 형태를 확인하세요");
 		}catch(SQLException e){
