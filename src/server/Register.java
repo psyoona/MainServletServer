@@ -1,5 +1,9 @@
 package server;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import JDBC.JDBC;
 
 public class Register {
@@ -7,7 +11,7 @@ public class Register {
 	JDBC adminJDBC;
 	
 	@SuppressWarnings("static-access")
-	public void register(String[] array){		
+	public void register(String[] array, HttpServletResponse resp) throws IOException{		
 		id = null; pw = null; nickname = null;
 		
 		for(int j = 0; j < array.length; j++){
@@ -25,6 +29,9 @@ public class Register {
 		adminJDBC.registerDB(id, pw, nickname);
 		// MergeCount 데이터베이스에 아이디를 등록하고 카운트값을 초기화시킨다.
 		adminJDBC.MergeCount(id);
+		
+		// 클라이언트에게 완료되었다고 응답함
+		resp.getWriter().print(Constants.SUCCESS);
 		
 	}
 }

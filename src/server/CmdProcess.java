@@ -51,7 +51,7 @@ public class CmdProcess {
 			case "register":
 				// 회원가입 작성완료 버튼이 클릭된 경우
 				Register info = new Register();
-				info.register(array);
+				info.register(array, resp);
 				break;
 
 			case "login":
@@ -63,7 +63,7 @@ public class CmdProcess {
 			case "imgSave":
 				// 이미지 전송 버튼이 클릭된 경우
 				ImgSave save = new ImgSave();
-				save.imgSave(array);
+				save.imgSave(array, resp);
 				break;
 
 			case "showAlbum":
@@ -76,7 +76,7 @@ public class CmdProcess {
 			case "makeAlbum":
 				// 사진 전송 후 자동으로 앨범 만들기 기능이 실행됨
 				MakeAlbum mkAlbum = new MakeAlbum();
-				mkAlbum.makeAlbum(array, i);
+				mkAlbum.makeAlbum(array, i, resp);
 				break;
 
 			default:

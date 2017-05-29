@@ -1,6 +1,9 @@
 package server;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 
 import JDBC.JDBC;
 import img.ImageResize;
@@ -23,7 +26,7 @@ public class MakeAlbum {
 	JDBC adminJDBC;
 	
 	@SuppressWarnings("static-access")
-	public void makeAlbum(String[] array, int index){
+	public void makeAlbum(String[] array, int index, HttpServletResponse resp) throws IOException{
 		String[] fileName = new String[10];
 		count = 0;
 		for(int j = index; j <array.length; j++){
@@ -116,6 +119,9 @@ public class MakeAlbum {
 //			imageResize = new ImageResizeFour();
 //			result2 = imageResize.resize(fileName[4], fileName[5], fileName[6], fileName[7], selectEmotion, loginID+"/");
 			
+			
+			// 클라이언트에게 작업이 완료되었다고 응답함
+			resp.getWriter().print(Constants.SUCCESS);
 		}						
 	}
 }

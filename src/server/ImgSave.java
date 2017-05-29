@@ -1,6 +1,9 @@
 package server;
 
+import java.io.IOException;
 import java.sql.SQLIntegrityConstraintViolationException;
+
+import javax.servlet.http.HttpServletResponse;
 
 import JDBC.JDBC;
 
@@ -11,7 +14,7 @@ public class ImgSave {
 	int faceCount; // 얼굴의 갯수를 카운트 하기 위한 변수
 	
 	@SuppressWarnings("static-access")
-	public void imgSave(String[] array){
+	public void imgSave(String[] array, HttpServletResponse resp) throws IOException{
 		faceCount = 0;
 		for(int j = 0; j < array.length; j++){
 			if(array[j].equals("id")){
@@ -33,6 +36,9 @@ public class ImgSave {
 		try {
 			adminJDBC = new JDBC();
 			adminJDBC.saveImg(loginID, imgAddress);
+			
+			// 클라이언트에게 완료되었다고 응답함
+			resp.getWriter().print(Constants.SUCCESS);
 		} catch (SQLIntegrityConstraintViolationException e) {
 			System.out.println("무결성 제약 조건에 위배됩니다.");
 		}	
