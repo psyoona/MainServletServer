@@ -11,7 +11,7 @@ public class ShowAlbum {
 	JDBC adminJDBC;
 	String[] album;
 	
-	public void showAlbum(String[] array, HttpServletResponse resp) throws IOException{
+	public void showMergeAlbum(String[] array, HttpServletResponse resp) throws IOException{
 		for(int j = 0; j < array.length; j++){
 			if(array[j].equals("id")){
 				loginID = array[j+2];

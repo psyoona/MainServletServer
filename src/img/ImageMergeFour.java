@@ -21,6 +21,8 @@ public class ImageMergeFour extends ImageMerge {
 		this.fileName[1] = fileTwo;
 		this.fileName[2] = fileThree;
 		this.fileName[3] = fileFour;
+		this.emotion = emotion;
+		this.loginID = loginID;
 	}
 
 	public BufferedImage merge() {
@@ -54,10 +56,11 @@ public class ImageMergeFour extends ImageMerge {
 			ImageIO.write(happy, "jpg", new File(path));
 			result = ImageIO.read(new File(path));
 			
-			adminJDBC = new JDBC();
-			adminJDBC.saveMerge(this.loginID, fileName, emotion);
-			// 그 이후 mergeCount 값을 1증가시킨다.
-			adminJDBC.addCount(this.loginID);
+//			adminJDBC = new JDBC();
+//			adminJDBC.saveMerge(this.loginID, fileName, emotion);
+			
+//			// 그 이후 mergeCount 값을 1증가시킨다.
+//			adminJDBC.addCount(this.loginID);
 			System.out.println(Constants.COMPLETE);
 
 			return result;

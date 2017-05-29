@@ -248,21 +248,33 @@ public class JDBC {
 	
 	public String[] showMergeAlbum(String loginID) {
 		// 사진 경로를 가져와서 유저에게 전달하는 메소드
-		String id_db;
+		int count = 0; // 테이블의 행의 갯수를 저장하기 위한 변수 
 		String[] imgPath = null;
 		try{
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			
-			pstmt = con.prepareStatement("SELECT * FROM imgAddr");
+			pstmt = con.prepareStatement("SELECT COUNT(*) FROM imgMerge");
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
-				id_db = rs.getString("id");
-				if(id_db.equals(loginID)){
-					// 데이터베이스에 일치하는 아이디가 있는 경우
-				}
-			}	
+				count = rs.getInt("COUNT(*)");
+			}
+			System.out.println(count);
+			pstmt = con.prepareStatement("SELECT imgPath FROM imgMerge WHERE id='"+loginID+"'");
+			rs = pstmt.executeQuery();
+			
+			imgPath = new String[count];
+			System.out.println("스트링 배열의 길이 : "+imgPath.length);
+			int i = 0; //반복 제어
+			while(rs.next()){				
+				imgPath[i] = rs.getString("imgPath"); 
+				i++;
+			}
+			
+			for(int j=0; j < i; j++){
+				System.out.println(imgPath[j]);
+			}
 			
 		} catch(IllegalArgumentException e){
 			System.out.println("입력 형태를 확인하세요");

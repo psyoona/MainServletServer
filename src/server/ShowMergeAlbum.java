@@ -11,7 +11,7 @@ public class ShowMergeAlbum {
 	JDBC adminJDBC;
 	String[] album;
 	
-	public void showAlbum(String[] array, HttpServletResponse resp) throws IOException{
+	public void showMergeAlbum(String[] array, HttpServletResponse resp) throws IOException{
 		for(int j = 0; j < array.length; j++){
 			if(array[j].equals("id")){
 				loginID = array[j+2];
@@ -20,12 +20,8 @@ public class ShowMergeAlbum {
 		
 		adminJDBC = new JDBC();
 		album = adminJDBC.showMergeAlbum(loginID);
-		
-		if(album != null){
-			
-		}else{
-			// 서버에 저장된 사진이 없는 경우
-			resp.getWriter().print("notHave");
-		}
+		//System.out.println(album);
+		// 모든 작업이 끝난 후 리턴
+		resp.getWriter().print(Constants.SUCCESS);
 	}
 }

@@ -66,11 +66,10 @@ public class CmdProcess {
 				save.imgSave(array, resp);
 				break;
 
-			case "showAlbum":
+			case "showMergeAlbum":
 				// 가운데 history 버튼이 클릭된 경우
-				System.out.println("showAlbum 호출");
-//				ShowMergeAlbum album = new ShowMergeAlbum();
-//				album.showMergeAlbum(array, resp);
+				ShowMergeAlbum album = new ShowMergeAlbum();
+				album.showMergeAlbum(array, resp);
 				break;
 
 			case "makeAlbum":

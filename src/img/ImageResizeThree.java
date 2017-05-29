@@ -14,9 +14,9 @@ public class ImageResizeThree extends ImageResize{
 
 	public BufferedImage resize(String fileOne, String fileTwo, String fileThree, String emotion, String loginID) {
 		try {
-			image1 = ImageIO.read(new File(Constants.IMG_PATH + loginID + fileOne));
-			image2 = ImageIO.read(new File(Constants.IMG_PATH + loginID + fileTwo));
-			image3 = ImageIO.read(new File(Constants.IMG_PATH + loginID + fileThree));
+			image1 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" +fileOne));
+			image2 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" + fileTwo));
+			image3 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" + fileThree));
 			System.out.println(emotion);
 			happy = ImageIO.read(new File(Constants.IMG_PATH + "emotion/"+emotion + ".jpg"));
 			
@@ -43,9 +43,9 @@ public class ImageResizeThree extends ImageResize{
 			g.dispose();
 			g2.dispose();
 			g3.dispose();
-			ImageIO.write(newImage1, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + fileOne));
-			ImageIO.write(newImage2, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + fileTwo));
-			ImageIO.write(newImage3, "jpg", new File(Constants.IMG_PATH + loginID + "album/" + fileThree));
+			ImageIO.write(newImage1, "jpg", new File(Constants.IMG_PATH + loginID +"/album/" + fileOne));
+			ImageIO.write(newImage2, "jpg", new File(Constants.IMG_PATH + loginID + "/album/" + fileTwo));
+			ImageIO.write(newImage3, "jpg", new File(Constants.IMG_PATH + loginID + "/album/" + fileThree));
 			ImageMergeThree imgmer = new ImageMergeThree(fileOne, fileTwo, fileThree, emotion, loginID);
 			result = imgmer.merge();
 

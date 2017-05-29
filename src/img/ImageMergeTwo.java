@@ -20,7 +20,7 @@ public class ImageMergeTwo extends ImageMerge{
 		this.fileName[0] = fileOne;
 		this.fileName[1] = fileTwo;
 		this.emotion = emotion;
-		this.loginID = "/"+loginID;
+		this.loginID = loginID;
 	}
 
 	public BufferedImage merge() {
@@ -59,14 +59,14 @@ public class ImageMergeTwo extends ImageMerge{
 			result = ImageIO.read(new File(path));
 			
 			// 이미지 합성이 완료된 경우 imgMerge 테이블에 저장한다.
-			adminJDBC = new JDBC();
-			System.out.println("Save Merge Start");
-			adminJDBC.saveMerge(this.loginID, fileName, emotion);
+//			adminJDBC = new JDBC();
+//			System.out.println("Save Merge Start");
+//			adminJDBC.saveMerge(this.loginID, fileName, emotion);
 			
 			
 			// 그 이후 mergeCount 값을 1증가시킨다.
-			System.out.println("addCount Start");
-			adminJDBC.addCount(this.loginID);
+//			System.out.println("addCount Start");
+//			adminJDBC.addCount(this.loginID);
 			
 			// 이미지 Merge가 완료되었음을 의미
 			System.out.println(Constants.COMPLETE);
