@@ -42,6 +42,17 @@ public class ImageMerge {
 		return build.toString();
 	}
 	
+	public String makeFinalPath(String loginID, String fileName){
+		StringBuilder build = new StringBuilder();
+		build.append(Constants.IMG_PATH);
+		build.append(loginID);
+		build.append("/final/");
+		build.append(fileName);		
+		build.append(".jpg");		
+		
+		return build.toString();		
+	}
+	
 	public void makeEmotionPath(){
 		
 	}

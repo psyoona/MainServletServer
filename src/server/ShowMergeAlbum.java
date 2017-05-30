@@ -20,8 +20,15 @@ public class ShowMergeAlbum {
 		
 		adminJDBC = new JDBC();
 		album = adminJDBC.showMergeAlbum(loginID);
+		
+		StringBuilder sender = new StringBuilder();
+		for(int i=0; i<album.length; i++){
+			sender.append(album[i]);
+			sender.append(",");
+		}
+		System.out.println(sender.toString());
 		//System.out.println(album);
 		// 모든 작업이 끝난 후 리턴
-		resp.getWriter().print(Constants.SUCCESS);
+		resp.getWriter().print(sender);
 	}
 }

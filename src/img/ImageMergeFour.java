@@ -9,7 +9,6 @@ import java.util.Date;
 
 import javax.imageio.ImageIO;
 
-import JDBC.JDBC;
 import server.Constants;
 
 public class ImageMergeFour extends ImageMerge {

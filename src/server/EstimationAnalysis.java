@@ -39,6 +39,9 @@ public class EstimationAnalysis {
 	public static void decideEmotion(){
 		for(int i=0; i < emotion.length; i++){
 //			System.out.println(emotion[i]);
+			if(emotion[i] == null){
+				emotion[i] = 0.0;
+			}
 			if(emotion[i] >= maxValue){
 				maxValue = emotion[i];
 				firstEmotion = Emotion.values()[i];

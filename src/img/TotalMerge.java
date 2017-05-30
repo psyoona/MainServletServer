@@ -30,7 +30,7 @@ public class TotalMerge extends ImageMerge{
 			String fileName = "final" + sdf.format(currentTime).toString();
 
 			// 파일 경로 생성
-			String path = makeMergePath(loginID, fileName);
+			String path = makeFinalPath(loginID, fileName);
 
 			ImageIO.write(background, "jpg", new File(path));
 			

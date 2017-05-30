@@ -16,12 +16,14 @@ public class MakeDirectory {
         File file = new File(path);
         File fileAlbum = new File(path+"/album");
         File mergeAlbum = new File(path+"/merge");
+        File finalAlbum = new File(path+"/final");
         //!표를 붙여주어 파일이 존재하지 않는 경우의 조건을 걸어줌
         if(!file.exists()){
             //디렉토리 생성 메서드
             file.mkdirs();
             fileAlbum.mkdirs();
             mergeAlbum.mkdirs();
+            finalAlbum.mkdirs();
             System.out.println(userID +" folder created directory successfully!");
         }
 	}
