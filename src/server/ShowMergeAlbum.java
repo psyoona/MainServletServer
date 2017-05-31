@@ -12,12 +12,14 @@ public class ShowMergeAlbum {
 	String[] album;
 	
 	public void showMergeAlbum(String[] array, HttpServletResponse resp) throws IOException{
+		// 들어온 JSON 데이터에서 id 값을 찾아낸다.
 		for(int j = 0; j < array.length; j++){
 			if(array[j].equals("id")){
 				loginID = array[j+2];
 			}
 		}
 		
+		// 데이터베이스에서 앨범목록을 찾아서 리턴한다.
 		adminJDBC = new JDBC();
 		album = adminJDBC.showMergeAlbum(loginID);
 		
@@ -28,7 +30,8 @@ public class ShowMergeAlbum {
 		}
 		System.out.println(sender.toString());
 		//System.out.println(album);
-		// 모든 작업이 끝난 후 리턴
+		
+		// 모든 작업이 끝난 후 파일명 스트링을 전달한다.
 		resp.getWriter().print(sender);
 	}
 }

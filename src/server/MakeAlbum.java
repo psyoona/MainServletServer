@@ -48,8 +48,8 @@ public class MakeAlbum {
 		
 		try {
 			selectEmotion = adminJDBC.getEmotion(fileName, count);
+			System.out.println("데이터베이스에서 가져온 값"+selectEmotion);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}				
 		

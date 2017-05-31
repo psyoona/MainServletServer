@@ -293,6 +293,7 @@ public class JDBC {
 	public void saveEmotion(String imgPath, Emotion firstEmotion, Double value) {
 		try{
 			String emotion = String.valueOf(firstEmotion);
+			System.out.println("전달된 값"+emotion);
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			
@@ -302,7 +303,7 @@ public class JDBC {
 			pstmt.setDouble(3, value);
 			pstmt.executeUpdate();
 			
-			System.out.println("저장 완료");
+			System.out.println("save Emotion: 저장 완료");
 			
 		} catch(IllegalArgumentException e){
 			System.out.println("입력 형태를 확인하세요");

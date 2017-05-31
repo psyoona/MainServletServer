@@ -22,8 +22,8 @@ public class EstimationAnalysis {
 	@SuppressWarnings("static-access")
 	public EstimationAnalysis(String imgPath){
 		// Constructor
-		firstEmotion = Emotion.anger;
-		maxValue = 0;
+		firstEmotion = Emotion.neutral;
+		maxValue = -1;
 		emotion = new Double[8];
 		this.imgPath = imgPath;
 	}
@@ -38,14 +38,11 @@ public class EstimationAnalysis {
 	
 	public static void decideEmotion(){
 		for(int i=0; i < emotion.length; i++){
-//			System.out.println(emotion[i]);
-			if(emotion[i] == null){
-				emotion[i] = 0.0;
-			}
 			if(emotion[i] >= maxValue){
 				maxValue = emotion[i];
 				firstEmotion = Emotion.values()[i];
 			}
+			
 		}// End of for	
 		
 		// 결정된 Emotion을 데이터베이스에 저장한다.
@@ -54,6 +51,12 @@ public class EstimationAnalysis {
 	
 	public static void analysis(String[] result, int faceCount){
 		// 분석된 값을 변수에 입력시키는 메소드		
+		if(faceCount == 0){
+			// 사진에 얼굴이 없는 경우
+			for(int i=0; i<emotion.length; i++){
+				emotion[i] = 0.0;
+			}
+		}
 		for(int j = 0; j < result.length; j++){
 			try{				
 				switch(result[j]){

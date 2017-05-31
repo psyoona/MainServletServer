@@ -42,7 +42,7 @@ public class ImageMerge {
 		return build.toString();
 	}
 	
-	public String makeFinalPath(String loginID, String fileName){
+	public static String makeFinalPath(String loginID, String fileName){
 		StringBuilder build = new StringBuilder();
 		build.append(Constants.IMG_PATH);
 		build.append(loginID);

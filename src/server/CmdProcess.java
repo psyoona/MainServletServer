@@ -30,11 +30,9 @@ public class CmdProcess {
 			throws ServletException, IOException {
 		String result = CmdProcess.getBody(req);
 		String[] array = result.split("\"");
-		System.out.println(result);
-		
+		System.out.println(result);		
 		
 		cmdProcess(array, resp);
-
 	}
 
 	// 입력값에 따라 처리해줄 부분
