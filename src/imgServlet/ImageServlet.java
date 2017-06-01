@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import img.ImageMerge;
-import server.Constants;
 
 public class ImageServlet extends HttpServlet{
 
@@ -23,7 +22,6 @@ public class ImageServlet extends HttpServlet{
 		resp.setContentType("image/gif");
 
 		byte[] by = new byte[4096]; //한번에 읽어올 파일크기 1024 바이트
-		System.out.println("get!");		
 		loginID = req.getParameter("id");
 		fileName = req.getParameter("fileName");		
 

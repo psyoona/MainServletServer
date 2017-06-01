@@ -265,7 +265,6 @@ public class JDBC {
 			rs = pstmt.executeQuery();
 			
 			imgPath = new String[count];
-			System.out.println("스트링 배열의 길이 : "+imgPath.length);
 			int i = 0; //반복 제어
 			while(rs.next()){				
 				imgPath[i] = rs.getString("imgPath"); 
