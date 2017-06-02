@@ -14,4 +14,20 @@ public class Constants {
 	public static String IMG_PATH="D://img/"; // 기본 이미지 경로	
 	
 	public static String COMPLETE = "이미지 합성 완료";
+	
+	// 배경사진을 결정하기 위한 이미지 배경 처리
+	public static String ANGER = "anger";
+	public static String CONTEMPT = "contempt";
+	public static String DISGUST = "disgust";
+	public static String FEAR = "fear";
+	public static String HAPPINESS = "happiness";
+	public static String NEUTRAL = "neutral";
+	public static String SADNESS = "sadness";
+	public static String SURPRISE = "surprise";
+	
+	// image Resize
+	public static int RESIZEWIDTH2 = 250; 
+	public static int RESIZEHEIGHT2 = 300; 
+	public static int MERGEWIDTH2 = 85; 
+	public static int MERGEHEIGHT2 = 115; 
 }

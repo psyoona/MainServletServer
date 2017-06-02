@@ -119,10 +119,9 @@ public class MakeAlbum {
 //			result1 = imageResize.resize(fileName[0], fileName[1], fileName[2], fileName[3], selectEmotion, loginID);
 //			imageResize = new ImageResizeFour();
 //			result2 = imageResize.resize(fileName[4], fileName[5], fileName[6], fileName[7], selectEmotion, loginID);
-			
-			
 		}						
 		@SuppressWarnings("unused")
+		// 최종 결과물을 토대로 사진을 합성함
 		TotalMerge total = new TotalMerge(result1, result2, loginID);
 		
 		// 클라이언트에게 작업이 완료되었다고 응답함

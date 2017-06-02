@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import JDBC.JDBC;
+import login.ID_Check;
+import login.Login;
+import login.Register;
 
 public class CmdProcess {
 	static String dburl = null;

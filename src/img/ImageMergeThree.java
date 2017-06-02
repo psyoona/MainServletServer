@@ -27,15 +27,12 @@ public class ImageMergeThree extends ImageMerge {
 			BufferedImage image1 = ImageIO.read(new File(makeAlbumPath(this.loginID, fileName[0])));
 			BufferedImage image2 = ImageIO.read(new File(makeAlbumPath(this.loginID, fileName[1])));
 			BufferedImage image3 = ImageIO.read(new File(makeAlbumPath(this.loginID, fileName[2])));
-			BufferedImage happy = ImageIO.read(new File(Constants.IMG_PATH + "emotion/" + emotion + ".jpg"));
-
-			// BufferedImage mergedImage = new
-			// BufferedImage(happy.getWidth(),happy.getHeight(),
-			// BufferedImage.TYPE_INT_RGB);
-			Graphics2D graphics = (Graphics2D) happy.getGraphics();
-			graphics.drawImage(image1, 15, happy.getHeight() / 20, null);
-			graphics.drawImage(image2, happy.getWidth() / 2, happy.getHeight() / 20, null);
-			graphics.drawImage(image3, 15, happy.getHeight() / 2 + 5, null);
+			selectBackground(emotion);
+			
+			Graphics2D graphics = (Graphics2D) background.getGraphics();
+			graphics.drawImage(image1, 15, (background.getHeight() / 20)+50, null);
+			graphics.drawImage(image2, background.getWidth() / 2, (background.getHeight() / 20)+50, null);
+			graphics.drawImage(image3, 15, (background.getHeight() / 2 + 5) +50, null);
 
 			// 구분되는 파일명을 만들어주기 위함
 			Date currentTime = new Date();
@@ -47,7 +44,7 @@ public class ImageMergeThree extends ImageMerge {
 			// 파일 경로 생성
 			String path = makeMergePath(this.loginID, fileName);
 
-			ImageIO.write(happy, "jpg", new File(path));
+			ImageIO.write(background, "jpg", new File(path));
 			result = ImageIO.read(new File(path));
 
 			// 이미지 합성이 완료된 경우 imgMerge 테이블에 저장한다.

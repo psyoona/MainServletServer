@@ -71,7 +71,7 @@ public class InsertText {
 		try {
 			ImageIO.write(bi, "jpg", makeImage);
 		} catch (IOException e) {
-			System.out.print("새로운 이미지 저장하다가 에러 나쓔..ㅜㅜ");
+			System.out.print("이미지 저장 중 에러 발생");
 			e.printStackTrace();
 		}
 		print("text length : " + subject.length());
