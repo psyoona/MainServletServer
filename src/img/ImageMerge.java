@@ -67,6 +67,16 @@ public class ImageMerge {
 		return build.toString();
 	}
 	
+	public static String makeFilterPath(String loginID, String fileName){
+		StringBuilder build = new StringBuilder();
+		build.append(Constants.IMG_PATH);
+		build.append(loginID);
+		build.append("/filter/");
+		build.append(fileName);		
+		 
+		return build.toString();
+	}
+	
 	public static String makeFinalPath(String loginID, String fileName){
 		StringBuilder build = new StringBuilder();
 		build.append(Constants.IMG_PATH);

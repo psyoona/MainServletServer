@@ -40,7 +40,7 @@ public class ImageMergeFour extends ImageMerge {
 
 			// 구분되는 파일명을 만들어주기 위함
 			Date currentTime = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_hhmmss_ms");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_hhmmss_SSS");
 
 			// 파일명 생성
 			String fileName = "four" + sdf.format(currentTime).toString();

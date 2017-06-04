@@ -31,11 +31,11 @@ public class ImageMergeTwo extends ImageMerge{
 			
 			Graphics2D graphics = (Graphics2D) background.getGraphics();
 			graphics.drawImage(image1, Constants.MERGEWIDTH2, Constants.MERGEHEIGHT2, null);
-			graphics.drawImage(image2, Constants.MERGEWIDTH2+305, Constants.MERGEHEIGHT2, null);
+			graphics.drawImage(image2, Constants.MERGEWIDTH2, Constants.MERGEHEIGHT2+250, null);
 			
 			// 구분되는 파일명을 만들어주기 위함
 			Date currentTime = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_hhmmss_ms");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_hhmmss_SSS");
 			
 			// 파일명 생성
 			String fileName = "two"+sdf.format(currentTime).toString();
@@ -44,17 +44,7 @@ public class ImageMergeTwo extends ImageMerge{
 			String path = makeMergePath(this.loginID, fileName);
 			
 			ImageIO.write(background, "jpg", new File(path));			
-			result = ImageIO.read(new File(path));
-			
-			// 이미지 합성이 완료된 경우 imgMerge 테이블에 저장한다.
-//			adminJDBC = new JDBC();
-//			System.out.println("Save Merge Start");
-//			adminJDBC.saveMerge(this.loginID, fileName, emotion);
-			
-			
-			// 그 이후 mergeCount 값을 1증가시킨다.
-//			System.out.println("addCount Start");
-//			adminJDBC.addCount(this.loginID);
+			result = ImageIO.read(new File(path));		
 			
 			// 이미지 Merge가 완료되었음을 의미
 			System.out.println(Constants.COMPLETE);

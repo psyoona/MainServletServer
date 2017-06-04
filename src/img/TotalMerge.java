@@ -20,7 +20,7 @@ public class TotalMerge extends ImageMerge{
 			background = ImageIO.read(new File("D://img/emotion/panel.jpg"));
 			Graphics2D graphics = (Graphics2D) background.getGraphics();
 			graphics.drawImage(image1, 0, 0, null);
-			graphics.drawImage(image2, 0, background.getHeight() / 2, null);
+			graphics.drawImage(image2, background.getWidth()/2, 0, null);
 
 			// 구분되는 파일명을 만들어주기 위함
 			Date currentTime = new Date();

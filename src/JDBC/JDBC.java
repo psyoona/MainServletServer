@@ -401,4 +401,28 @@ public class JDBC {
 			if(rs != null){try{rs.close();}catch(Exception e){}}
 		}		
 	}
+
+	public void originalImg(String loginID, String path) {
+		try{
+			System.out.println("filterImg 내부 시작");
+			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
+			
+			pstmt = con.prepareStatement("INSERT INTO filterImg VALUES(?,?)");
+			pstmt.setString(1, loginID);
+			pstmt.setString(2, path);
+			pstmt.executeUpdate();
+			
+		} catch(IllegalArgumentException e){
+			System.out.println("입력 형태를 확인하세요");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			if(con != null){try{con.close();}catch(Exception e){}}
+			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
+			if(rs != null){try{rs.close();}catch(Exception e){}}
+		}
+		
+	}
 }

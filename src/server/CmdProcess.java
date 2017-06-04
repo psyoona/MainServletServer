@@ -54,6 +54,12 @@ public class CmdProcess {
 				Register info = new Register();
 				info.register(array, resp);
 				break;
+				
+			case "filter":
+				FilterImg filter = new FilterImg();
+				filter.saveImage(array, resp);
+				System.out.println("filter");
+				break;
 
 			case "login":
 				// 로그인 버튼이 클릭된 경우

@@ -31,6 +31,16 @@
   	<url-pattern>/image</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>ImageFilter</servlet-name>
+  	<servlet-class>imgServlet.ImageFilterServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ImageFilter</servlet-name>
+  	<url-pattern>/imageFilter</url-pattern>
+  </servlet-mapping>
+  
   
   
   

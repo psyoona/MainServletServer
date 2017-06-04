@@ -25,9 +25,15 @@ public class Constants {
 	public static String SADNESS = "sadness";
 	public static String SURPRISE = "surprise";
 	
-	// image Resize
-	public static int RESIZEWIDTH2 = 250; 
-	public static int RESIZEHEIGHT2 = 300; 
-	public static int MERGEWIDTH2 = 85; 
-	public static int MERGEHEIGHT2 = 115; 
+	// image Resize & Merge 2
+	public static int RESIZEWIDTH2 = 180; 
+	public static int RESIZEHEIGHT2 = 230; 
+	public static int MERGEWIDTH2 = 110; 
+	public static int MERGEHEIGHT2 = 100;
+	
+	// image Resize & Merge 3
+	public static int RESIZEWIDTH3 = 180; 
+	public static int RESIZEHEIGHT3 = 230; 
+	public static int MERGEWIDTH3 = 40; 
+	public static int MERGEHEIGHT3 = 100; 
 }

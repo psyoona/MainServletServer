@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import img.ImageMerge;
 
-public class ImageServlet extends HttpServlet{
+public class ImageFilterServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	String loginID;
@@ -23,13 +23,15 @@ public class ImageServlet extends HttpServlet{
 
 		byte[] by = new byte[4096]; //한번에 읽어올 파일크기 1024 바이트
 		loginID = req.getParameter("id");
-		fileName = req.getParameter("fileName");		
+		fileName = req.getParameter("filterName");		
 
 		//출력을위한 OutputStream 객체
 		ServletOutputStream out = resp.getOutputStream();
 		try {
 			//이미지 주소 저장
-			String path = ImageMerge.makeFinalPath(loginID, fileName);
+			String path = ImageMerge.makeFilterPath(loginID, fileName);
+			
+			System.out.println(path);
 			
 			@SuppressWarnings("resource")
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(path));
@@ -38,16 +40,18 @@ public class ImageServlet extends HttpServlet{
 			while(in.read(by) != -1) {
 				out.write(by); //2048바이트씩 출력
 			}
-					
 			//in.close();			
 			out.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}		
 	}
+		
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("tesst");
 		showImage(req, resp);
-	}	
+	}
+
 }
