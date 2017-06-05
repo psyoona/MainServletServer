@@ -30,8 +30,8 @@ public class ImageMergeTwo extends ImageMerge{
 			selectBackground(emotion);
 			
 			Graphics2D graphics = (Graphics2D) background.getGraphics();
-			graphics.drawImage(image1, Constants.MERGEWIDTH2, Constants.MERGEHEIGHT2, null);
-			graphics.drawImage(image2, Constants.MERGEWIDTH2, Constants.MERGEHEIGHT2+750, null);
+			graphics.drawImage(image1, Constants.MERGE_X2, Constants.MERGE_Y2, null);
+			graphics.drawImage(image2, Constants.MERGE_X2, Constants.MERGE_Y2+750, null);
 			
 			// 구분되는 파일명을 만들어주기 위함
 			Date currentTime = new Date();

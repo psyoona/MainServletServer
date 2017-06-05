@@ -145,6 +145,8 @@ public class JDBC {
 	}
 	
 
+	// 파일이 두 개일 때 가장 높은 emotion String을 return 한다.
+	// 기본은 neutral이다.
 	public static String getEmotion(String fileName1, String fileName2) throws InterruptedException{
 		String firstEmotion = null;
 		String tempString1;
@@ -201,6 +203,8 @@ public class JDBC {
 		return "neutral";
 	}
 	
+	// 파일이 세 개일 때 가장 높은 emotion String을 return 한다.
+	// 기본은 neutral이다.
 	public static String getEmotion(String fileName1, String fileName2, String fileName3) throws InterruptedException{
 		String firstEmotion = null;
 		String tempString1;
@@ -271,9 +275,95 @@ public class JDBC {
 		return "neutral";
 	}
 	
-	// 파일이 네 개인 경우
-	public String getEmotion(String string, String string2, String string3, String string4) {
-		// TODO Auto-generated method stub
+	// 파일명이 네 개일 때 가장 높은 emotion String을 return 한다.
+	// 기본은 neutral이다.
+	public String getEmotion(String fileName1, String fileName2, String fileName3, String fileName4) {
+		String firstEmotion = null;
+		String tempString1;
+		Double firstValue = 0.0;
+		
+		String secondEmotion = null;
+		String tempString2;
+		Double secondValue = 0.0;
+		
+		String thirdEmotion = null;
+		String tempString3;
+		Double thirdValue = 0.0;
+		
+		String forthEmotion = null;
+		String tempString4;
+		Double forthValue = 0.0;
+		
+		String tempEmotion1 = "neutral";
+		String tempEmotion2 = "neutral";
+		Double tempValue1 = 0.0;
+		Double tempValue2 = 0.0;
+		
+		try{
+			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
+			
+			pstmt = con.prepareStatement("SELECT * FROM emotion");
+			rs = pstmt.executeQuery();			
+			
+			while(rs.next()){
+				resultPath = rs.getString("path");
+				if(fileName1.equals(resultPath)){
+					firstEmotion = rs.getString("emotion");
+					tempString1 = rs.getString("value");
+					firstValue = Double.valueOf(tempString1);
+				}
+				if(fileName2.equals(resultPath)){
+					secondEmotion = rs.getString("emotion");
+					tempString2 = rs.getString("value");
+					secondValue = Double.valueOf(tempString2);
+				}
+				if(fileName3.equals(resultPath)){
+					thirdEmotion = rs.getString("emotion");
+					tempString3 = rs.getString("value");
+					thirdValue = Double.valueOf(tempString3);
+				}
+				if(fileName4.equals(resultPath)){
+					thirdEmotion = rs.getString("emotion");
+					tempString4 = rs.getString("value");
+					thirdValue = Double.valueOf(tempString4);
+				}
+			} // End of While
+			
+			if(firstValue > secondValue){
+				tempValue1 = firstValue;
+				tempEmotion1 = firstEmotion;
+			}else{
+				tempValue1 = secondValue;
+				tempEmotion1 = secondEmotion;
+			}
+			
+			if(thirdValue > forthValue){
+				tempValue2 = thirdValue;
+				tempEmotion2 = thirdEmotion;
+			}else{
+				tempValue2 = forthValue;
+				tempEmotion2 = forthEmotion;
+			}
+			
+			if(tempValue1 > tempValue2){
+				resultEmotion = tempEmotion1;
+			}else{
+				resultEmotion = tempEmotion2;
+			}
+			
+			return resultEmotion;
+			
+		} catch(IllegalArgumentException e){
+			System.out.println("입력 형태를 확인하세요");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if(con != null){try{con.close();}catch(Exception e){}}
+			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
+			if(rs != null){try{rs.close();}catch(Exception e){}}
+		}
+		
 		return "neutral";
 	}
 

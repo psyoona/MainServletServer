@@ -1,7 +1,5 @@
 package img;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,40 +18,10 @@ public class ImageResizeFour extends ImageResize{
 			image3 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" + fileThree));
 			image4 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" + fileFour));
 
-			resizeImage1 = image1.getScaledInstance(background.getWidth() / 2 - background.getWidth() / 42,
-					background.getHeight() / 2 - background.getHeight() / 20, Image.SCALE_SMOOTH);
-			resizeImage2 = image2.getScaledInstance(background.getWidth() / 2 - background.getWidth() / 42,
-					background.getHeight() / 2 - background.getHeight() / 20, Image.SCALE_SMOOTH);
-			resizeImage3 = image3.getScaledInstance(background.getWidth() / 2 - background.getWidth() / 42,
-					background.getHeight() / 2 - background.getHeight() / 20, Image.SCALE_SMOOTH);
-			resizeImage4 = image4.getScaledInstance(background.getWidth() / 2 - background.getWidth() / 42,
-					background.getHeight() / 2 - background.getHeight() / 20, Image.SCALE_SMOOTH);
-
-			newImage1 = new BufferedImage(background.getWidth() / 2 - background.getWidth() / 42,
-					background.getHeight() / 2 - background.getHeight() / 20, BufferedImage.TYPE_INT_RGB);
-			Graphics2D g = (Graphics2D) newImage1.getGraphics();
-			g.drawImage(resizeImage1, 0, 0, null);
-			newImage2 = new BufferedImage(background.getWidth() / 2 - background.getWidth() / 42,
-					background.getHeight() / 2 - background.getHeight() / 20, BufferedImage.TYPE_INT_RGB);
-			Graphics2D g2 = (Graphics2D) newImage2.getGraphics();
-			g2.drawImage(resizeImage2, 0, 0, null);
-			newImage3 = new BufferedImage(background.getWidth() / 2 - background.getWidth() / 42,
-					background.getHeight() / 2 - background.getHeight() / 20, BufferedImage.TYPE_INT_RGB);
-			Graphics2D g3 = (Graphics2D) newImage3.getGraphics();
-			g3.drawImage(resizeImage3, 0, 0, null);
-			newImage4 = new BufferedImage(background.getWidth() / 2 - background.getWidth() / 42,
-					background.getHeight() / 2 - background.getHeight() / 20, BufferedImage.TYPE_INT_RGB);
-			Graphics2D g4 = (Graphics2D) newImage4.getGraphics();
-			g4.drawImage(resizeImage4, 0, 0, null);
-			g.dispose();
-			g2.dispose();
-			g3.dispose();
-			g4.dispose();
-
-			ImageIO.write(newImage1, "jpg", new File(Constants.IMG_PATH + loginID + "/album/" + fileOne));
-			ImageIO.write(newImage2, "jpg", new File(Constants.IMG_PATH + loginID + "/album/" + fileTwo));
-			ImageIO.write(newImage3, "jpg", new File(Constants.IMG_PATH + loginID + "/album/" + fileThree));
-			ImageIO.write(newImage4, "jpg", new File(Constants.IMG_PATH + loginID + "/album/" + fileFour));
+			Resacle.scale(image1, Constants.IMG_PATH + loginID +"/" + "album/" + fileOne,"jpg", Constants.RESIZEWIDTH3, Constants.RESIZEHEIGHT4);
+			Resacle.scale(image2, Constants.IMG_PATH + loginID +"/" + "album/" + fileTwo,"jpg", Constants.RESIZEWIDTH3, Constants.RESIZEHEIGHT4);
+			Resacle.scale(image3, Constants.IMG_PATH + loginID +"/" + "album/" + fileThree,"jpg", Constants.RESIZEWIDTH3, Constants.RESIZEHEIGHT4);
+			Resacle.scale(image4, Constants.IMG_PATH + loginID +"/" + "album/" + fileFour,"jpg", Constants.RESIZEWIDTH3, Constants.RESIZEHEIGHT4);
 
 			ImageMergeFour imgmer = new ImageMergeFour(fileOne, fileTwo, fileThree, fileFour, emotion, loginID);
 			result = imgmer.merge();
