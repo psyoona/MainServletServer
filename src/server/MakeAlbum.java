@@ -62,12 +62,11 @@ public class MakeAlbum {
 		ImageResize imageResizeThree = null;
 		ImageResize imageResizeFour = null;
 		
-		if(frame.equals("2,2")){
-			imageResizeTwo = new ImageResizeTwo();
-			result1 = imageResizeTwo.resize(fileName[0], fileName[1], firstEmotion, loginID);
-			imageResizeTwo = new ImageResizeTwo();
-			result2 = imageResizeTwo.resize(fileName[2], fileName[3], secondEmotion, loginID);
-			// 밑에 
+		if(frame.equals("1,2")){
+			
+		}else if(frame.equals("1,3")){
+			
+		}else if(frame.equals("1,4")){	
 			
 		}else if(frame.equals("2,3")){
 			System.out.println("print!");
@@ -82,42 +81,9 @@ public class MakeAlbum {
 			result1 = imageResizeTwo.resize(fileName[0], fileName[1], firstEmotion, loginID);
 			imageResizeFour = new ImageResizeFour();
 			result2 = imageResizeFour.resize(fileName[2], fileName[3], fileName[4], fileName[5], secondEmotion, loginID);
+		}else if(frame.equals("3,4")){
 			
-//		}else if(frame.equals("3,2")){
-//			imageResize = new ImageResizeThree();
-//			result1 = imageResize.resize(fileName[0], fileName[1], fileName[2], selectEmotion, loginID);
-//			imageResize = new ImageResizeTwo();
-//			result2 = imageResize.resize(fileName[3], fileName[4], selectEmotion, loginID);
-//			
-//		}else if(frame.equals("3,3")){
-//			imageResize = new ImageResizeThree();
-//			result1 = imageResize.resize(fileName[0], fileName[1], fileName[2], selectEmotion, loginID);
-//			imageResize = new ImageResizeThree();
-//			result2 = imageResize.resize(fileName[3], fileName[4], fileName[5], selectEmotion, loginID);
-//			
-//		}else if(frame.equals("3,4")){
-//			imageResize = new ImageResizeThree();
-//			result1 = imageResize.resize(fileName[0], fileName[1], fileName[2], selectEmotion, loginID);
-//			imageResize = new ImageResizeFour();
-//			result2 = imageResize.resize(fileName[3], fileName[4], fileName[5], fileName[6], selectEmotion, loginID);
-//			
-//		}else if(frame.equals("4,2")){
-//			imageResize = new ImageResizeFour();
-//			result1 = imageResize.resize(fileName[0], fileName[1], fileName[2], fileName[3], selectEmotion, loginID);
-//			imageResize = new ImageResizeTwo();
-//			result2 = imageResize.resize(fileName[4], fileName[5], selectEmotion, loginID);
-//			
-//		}else if(frame.equals("4,3")){
-//			imageResize = new ImageResizeFour();
-//			result1 = imageResize.resize(fileName[0], fileName[1], fileName[2], fileName[3], selectEmotion, loginID);
-//			imageResize = new ImageResizeThree();
-//			result2 = imageResize.resize(fileName[4], fileName[5], fileName[6], selectEmotion, loginID);
-//			
-//		}else if(frame.equals("4,4")){
-//			imageResize = new ImageResizeFour();
-//			result1 = imageResize.resize(fileName[0], fileName[1], fileName[2], fileName[3], selectEmotion, loginID);
-//			imageResize = new ImageResizeFour();
-//			result2 = imageResize.resize(fileName[4], fileName[5], fileName[6], fileName[7], selectEmotion, loginID);
+			
 		}						
 		@SuppressWarnings("unused")
 		// 최종 결과물을 토대로 사진을 합성함

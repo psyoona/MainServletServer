@@ -26,8 +26,8 @@ public class Constants {
 	public static String SURPRISE = "surprise";
 	
 	// image Resize & Merge 2
-	public static int RESIZEWIDTH2 = 390; 
-	public static int RESIZEHEIGHT2 = 551; 
+	public static int RESIZEWIDTH2 = 400; 
+	public static int RESIZEHEIGHT2 = 566; 
 	public static int MERGEWIDTH2 = 390; 
 	public static int MERGEHEIGHT2 = 200;
 	
