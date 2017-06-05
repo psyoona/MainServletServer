@@ -15,6 +15,7 @@ public class ImageResizeTwo extends ImageResize{
 			System.out.println("경로: "+Constants.IMG_PATH + loginID + "/" + fileOne);
 			image1 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" + fileOne));
 			image2 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" + fileTwo));
+			System.out.println("나의 값은? : "+emotion);
 			selectBackground(emotion);
 			
 //			resizeImage1 = image1.getScaledInstance(Constants.RESIZEWIDTH2, Constants.RESIZEHEIGHT2, Image.SCALE_SMOOTH);
@@ -33,8 +34,8 @@ public class ImageResizeTwo extends ImageResize{
 //			System.out.println(fileOne+"  sklslslslslslslslsls");
 //			System.out.println(fileTwo+"  sklslslslslslslslsls");
 			
-			Test.scale(image1, Constants.IMG_PATH + loginID +"/" + "album/" + fileOne,"jpg", Constants.RESIZEWIDTH2, Constants.RESIZEHEIGHT2);
-			Test.scale(image2, Constants.IMG_PATH + loginID +"/" + "album/" + fileTwo,"jpg", Constants.RESIZEWIDTH2, Constants.RESIZEHEIGHT2);
+			Resacle.scale(image1, Constants.IMG_PATH + loginID +"/" + "album/" + fileOne,"jpg", Constants.RESIZEWIDTH2, Constants.RESIZEHEIGHT2);
+			Resacle.scale(image2, Constants.IMG_PATH + loginID +"/" + "album/" + fileTwo,"jpg", Constants.RESIZEWIDTH2, Constants.RESIZEHEIGHT2);
 			ImageMergeTwo imgmer = new ImageMergeTwo(fileOne, fileTwo, emotion, loginID);
 			result = imgmer.merge();
 		} catch (IOException ioe) {

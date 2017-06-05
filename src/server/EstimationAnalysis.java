@@ -9,9 +9,7 @@ public class EstimationAnalysis {
 		
 	static Double[] emotion;
 	
-	static Emotion firstEmotion; // 가장 비중이 높은 감정
-	static Emotion secondEmotion; // 두번째로 비중이 높은 감정
-	static Emotion thirdEmotion; // 세번째로 비중이 높은 감정	
+	static Emotion selecctEmotion; // 가장 비중이 높은 감정
 	
 	static String temp; // 값을 임시저장해둘 변수
 	static Double tempDouble;
@@ -22,7 +20,7 @@ public class EstimationAnalysis {
 	@SuppressWarnings("static-access")
 	public EstimationAnalysis(String imgPath){
 		// Constructor
-		firstEmotion = Emotion.neutral;
+		selecctEmotion = Emotion.neutral;
 		maxValue = -1;
 		emotion = new Double[8];
 		this.imgPath = imgPath;
@@ -31,18 +29,16 @@ public class EstimationAnalysis {
 	public static void saveEmotion(){
 		// 결정된 하나의 감정을 저장하기 위한 메소드
 		JDBC adminJDBC = new JDBC();
-//		System.out.println(maxValue);
-		adminJDBC.saveEmotion(imgPath, firstEmotion, maxValue);
-		System.out.println("이 사진의 Emotion은 "+ firstEmotion +" 입니다.");
+		adminJDBC.saveEmotion(imgPath, selecctEmotion, maxValue);
+		System.out.println("이 사진의 Emotion은 "+ selecctEmotion +" 입니다.");
 	}	
 	
 	public static void decideEmotion(){
 		for(int i=0; i < emotion.length; i++){
 			if(emotion[i] >= maxValue){
 				maxValue = emotion[i];
-				firstEmotion = Emotion.values()[i];
-			}
-			
+				selecctEmotion = Emotion.values()[i];
+			}			
 		}// End of for	
 		
 		// 결정된 Emotion을 데이터베이스에 저장한다.
@@ -52,7 +48,7 @@ public class EstimationAnalysis {
 	public static void analysis(String[] result, int faceCount){
 		// 분석된 값을 변수에 입력시키는 메소드		
 		if(faceCount == 0){
-			// 사진에 얼굴이 없는 경우
+			// 초기화
 			for(int i=0; i<emotion.length; i++){
 				emotion[i] = 0.0;
 			}
@@ -64,8 +60,6 @@ public class EstimationAnalysis {
 					temp = result[j+1].substring(1, result[j+1].length()-2);
 					tempDouble = Double.valueOf(temp);
 					emotion[0] = Double.parseDouble(String.format("%.6f", tempDouble));
-					//System.out.println(emotion[0]);
-					
 					break;
 				case "contempt\\":
 					temp = result[j+1].substring(1, result[j+1].length()-2);

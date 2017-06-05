@@ -23,7 +23,7 @@ public class MakeAlbum {
 	BufferedImage result2;
 	
 	int count;
-	String loginID, selectEmotion;
+	String loginID, firstEmotion, secondEmotion;
 	JDBC adminJDBC;
 	
 	@SuppressWarnings("static-access")
@@ -47,8 +47,12 @@ public class MakeAlbum {
 		adminJDBC = new JDBC();
 		
 		try {
-			selectEmotion = adminJDBC.getEmotion(fileName, count);
-			System.out.println("데이터베이스에서 가져온 값"+selectEmotion);
+			if(frame.equals("2,3")){
+				firstEmotion = adminJDBC.getEmotion(fileName[0], fileName[1]);
+				secondEmotion = adminJDBC.getEmotion(fileName[0], fileName[1], fileName[2]);
+				System.out.println("데이터베이스에서 가져온 값(2장)"+ firstEmotion);
+				System.out.println("데이터베이스에서 가져온 값(3장)"+ secondEmotion);
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}				
@@ -60,29 +64,24 @@ public class MakeAlbum {
 		
 		if(frame.equals("2,2")){
 			imageResizeTwo = new ImageResizeTwo();
-			result1 = imageResizeTwo.resize(fileName[0], fileName[1], selectEmotion, loginID);
+			result1 = imageResizeTwo.resize(fileName[0], fileName[1], firstEmotion, loginID);
 			imageResizeTwo = new ImageResizeTwo();
-			result2 = imageResizeTwo.resize(fileName[2], fileName[3], selectEmotion, loginID);
+			result2 = imageResizeTwo.resize(fileName[2], fileName[3], secondEmotion, loginID);
 			// 밑에 
 			
 		}else if(frame.equals("2,3")){
 			System.out.println("print!");
 			imageResizeTwo = new ImageResizeTwo();
-			System.out.println("1: "+fileName[0]);
-			System.out.println("2: "+fileName[1]);
-			result1 = imageResizeTwo.resize(fileName[0], fileName[1], selectEmotion, loginID);
+			result1 = imageResizeTwo.resize(fileName[0], fileName[1], firstEmotion, loginID);
 			imageResizeThree = new ImageResizeThree();
-			System.out.println("3: "+fileName[2]);
-			System.out.println("4: "+fileName[3]);
-			System.out.println("5: "+fileName[4]);
-			result2 = imageResizeThree.resize(fileName[2], fileName[3], fileName[4], selectEmotion, loginID);
+			result2 = imageResizeThree.resize(fileName[2], fileName[3], fileName[4], secondEmotion, loginID);
 			System.out.println("print End!");
 			
 		}else if(frame.equals("2,4")){
 			imageResizeTwo = new ImageResizeTwo();
-			result1 = imageResizeTwo.resize(fileName[0], fileName[1], selectEmotion, loginID);
+			result1 = imageResizeTwo.resize(fileName[0], fileName[1], firstEmotion, loginID);
 			imageResizeFour = new ImageResizeFour();
-			result2 = imageResizeFour.resize(fileName[2], fileName[3], fileName[4], fileName[5], selectEmotion, loginID);
+			result2 = imageResizeFour.resize(fileName[2], fileName[3], fileName[4], fileName[5], secondEmotion, loginID);
 			
 //		}else if(frame.equals("3,2")){
 //			imageResize = new ImageResizeThree();

@@ -21,6 +21,8 @@ public class ImgSave {
 				loginID = array[j+2];
 			}else if(array[j].equals("filename")){
 				imgAddress = array[j+2];
+				// 기본 emotion을 neutral로 초기화
+				emotion = new EstimationAnalysis(imgAddress);
 			}else if(array[j].equals("response")){
 				for(int k=j; k < array.length; k++){
 					if(array[k].equals("faceRectangle\\")){
@@ -28,7 +30,6 @@ public class ImgSave {
 //						System.out.println("얼굴의 갯수"+faceCount);
 					}
 				}
-				emotion = new EstimationAnalysis(imgAddress);
 				emotion.analysis(array, faceCount);
 			}
 		}

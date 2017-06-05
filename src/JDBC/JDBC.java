@@ -145,7 +145,15 @@ public class JDBC {
 	}
 	
 
-	public static String getEmotion(String[] fileName, int count) throws InterruptedException{
+	public static String getEmotion(String fileName1, String fileName2) throws InterruptedException{
+		String firstEmotion = null;
+		String tempString1;
+		Double firstValue = 0.0;
+		
+		String secondEmotion = null;
+		String tempString2;
+		Double secondValue = 0.0;
+		
 		try{
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 			con = DriverManager.getConnection(dburl, db_id, db_pw);
@@ -154,20 +162,30 @@ public class JDBC {
 			rs = pstmt.executeQuery();			
 			
 			while(rs.next()){
-				resultPath = rs.getString("imgPath");
-				for(int i=0; i < count; i++){
-					if(fileName[i].equals(resultPath)){
-						tempEmotion = rs.getString("emotion");
-						tempString = rs.getString("value");
-						tempDouble = Double.valueOf(tempString);
-						if(tempDouble > resultDouble){
-							resultDouble = tempDouble;
-							resultEmotion = tempEmotion;
-							System.out.println("test " +resultEmotion);
-						}						
-					}
+				resultPath = rs.getString("path");
+				
+				if(fileName1.equals(resultPath)){
+					firstEmotion = rs.getString("emotion");
+					tempString1 = rs.getString("value");
+					firstValue = Double.valueOf(tempString1);
+				}
+				if(fileName2.equals(resultPath)){
+					secondEmotion = rs.getString("emotion");
+					tempString2 = rs.getString("value");
+					secondValue = Double.valueOf(tempString2);
 				}
 			} // End of While
+			
+			
+			if(firstValue == secondValue){
+				resultEmotion = "neutral";
+			}else if(firstValue > secondValue){
+				resultEmotion = firstEmotion;
+			}else if(firstValue < secondValue){
+				resultEmotion = secondEmotion;
+			}else{
+				resultEmotion = "neutral";
+			}
 			return resultEmotion;
 			
 		} catch(IllegalArgumentException e){
@@ -180,7 +198,77 @@ public class JDBC {
 			if(rs != null){try{rs.close();}catch(Exception e){}}
 		}
 		
-		return null;
+		return "neutral";
+	}
+	
+	public static String getEmotion(String fileName1, String fileName2, String fileName3) throws InterruptedException{
+		String firstEmotion = null;
+		String tempString1;
+		Double firstValue = 0.0;
+		
+		String secondEmotion = null;
+		String tempString2;
+		Double secondValue = 0.0;
+		
+		String thirdEmotion = null;
+		String tempString3;
+		Double thirdValue = 0.0;
+		
+		try{
+			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
+			
+			pstmt = con.prepareStatement("SELECT * FROM emotion");
+			rs = pstmt.executeQuery();			
+			
+			while(rs.next()){
+				resultPath = rs.getString("path");
+				if(fileName1.equals(resultPath)){
+					firstEmotion = rs.getString("emotion");
+					tempString1 = rs.getString("value");
+					firstValue = Double.valueOf(tempString1);
+				}
+				if(fileName2.equals(resultPath)){
+					secondEmotion = rs.getString("emotion");
+					tempString2 = rs.getString("value");
+					secondValue = Double.valueOf(tempString2);
+				}
+				if(fileName3.equals(resultPath)){
+					thirdEmotion = rs.getString("emotion");
+					tempString3 = rs.getString("value");
+					thirdValue = Double.valueOf(tempString3);
+				}
+			} // End of While
+			if(firstValue == secondValue){
+				resultEmotion = "neutral";
+			}else if(firstValue > secondValue){
+				if(firstValue > thirdValue){
+					resultEmotion = firstEmotion;
+				}else{
+					resultEmotion = thirdEmotion;
+				}
+			}else if(firstValue < secondValue){
+				if(secondValue > thirdValue){
+					resultEmotion = secondEmotion;
+				}else{
+					resultEmotion = thirdEmotion;
+				}
+			}else{
+				resultEmotion = "neutral";
+			}
+			return resultEmotion;
+			
+		} catch(IllegalArgumentException e){
+			System.out.println("입력 형태를 확인하세요");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if(con != null){try{con.close();}catch(Exception e){}}
+			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
+			if(rs != null){try{rs.close();}catch(Exception e){}}
+		}
+		
+		return "neutral";
 	}
 
 	public boolean checkID(String id) {
@@ -261,13 +349,13 @@ public class JDBC {
 				count = rs.getInt("COUNT(*)");
 			}
 			System.out.println(count);
-			pstmt = con.prepareStatement("SELECT imgPath FROM imgMerge WHERE id='"+loginID+"'");
+			pstmt = con.prepareStatement("SELECT path FROM imgMerge WHERE id='"+loginID+"'");
 			rs = pstmt.executeQuery();
 			
 			imgPath = new String[count];
 			int i = 0; //반복 제어
 			while(rs.next()){				
-				imgPath[i] = rs.getString("imgPath"); 
+				imgPath[i] = rs.getString("path"); 
 				i++;
 			}
 			
@@ -292,11 +380,12 @@ public class JDBC {
 	public void saveEmotion(String imgPath, Emotion firstEmotion, Double value) {
 		try{
 			String emotion = String.valueOf(firstEmotion);
-			System.out.println("전달된 값"+emotion);
+			//System.out.println("전달된 값"+emotion);
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			
 			pstmt = con.prepareStatement("INSERT INTO emotion VALUES(?, ?, ?)");
+			System.out.println("위배: "+imgPath);
 			pstmt.setString(1, imgPath);
 			pstmt.setString(2, emotion);
 			pstmt.setDouble(3, value);

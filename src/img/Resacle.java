@@ -10,7 +10,7 @@ import com.mortennobel.imagescaling.AdvancedResizeOp;
 import com.mortennobel.imagescaling.ResampleOp;
 
 
-public class Test {
+public class Resacle {
 	public static boolean scale(BufferedImage srcImage, String dest, String imageFormat, int destWidth,
 			int destHeight) {
 		boolean result = true;
