@@ -25,6 +25,11 @@ public class Constants {
 	public static String SADNESS = "sadness";
 	public static String SURPRISE = "surprise";
 	
+	
+	// set Background
+	public static String LEFT = "left";
+	public static String RIGHT = "right";
+	
 	// image Resize & Merge 2
 	public static int RESIZEWIDTH2 = 400; 
 	public static int RESIZEHEIGHT2 = 566; 

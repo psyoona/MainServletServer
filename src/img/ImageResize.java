@@ -32,4 +32,5 @@ public class ImageResize {
 		return null;}
 	public BufferedImage resize(String fileOne, String fileTwo, String fileThree, String fileFour, String emotion, String loginID){
 		return null;}
+
 }

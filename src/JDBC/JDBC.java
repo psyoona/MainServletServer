@@ -270,6 +270,12 @@ public class JDBC {
 		
 		return "neutral";
 	}
+	
+	// 파일이 네 개인 경우
+	public String getEmotion(String string, String string2, String string3, String string4) {
+		// TODO Auto-generated method stub
+		return "neutral";
+	}
 
 	public boolean checkID(String id) {
 		// 아이디 중복 체크 메소드
@@ -514,4 +520,5 @@ public class JDBC {
 		}
 		
 	}
+	
 }

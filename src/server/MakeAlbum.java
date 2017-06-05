@@ -46,21 +46,44 @@ public class MakeAlbum {
 		// 사진의 emotion의 중 큰 값을 구해서 가져온다.
 		adminJDBC = new JDBC();
 		
+		// 이미지 리사이즈 이후 자동으로 Merge까지 완료한다.
+		ImageResize imageResizeTwo = null;
+		ImageResize imageResizeThree = null;
+		ImageResize imageResizeFour = null;
+		
 		try {
-			if(frame.equals("2,3")){
+			if(frame.equals("1,2")){
+				
+			}else if(frame.equals("1,3")){
+				
+			}else if(frame.equals("1,4")){
+				
+			}else if(frame.equals("2,1")){
+				
+			}else if(frame.equals("2,2")){
+				
+			}else if(frame.equals("2,3")){				
 				firstEmotion = adminJDBC.getEmotion(fileName[0], fileName[1]);
-				secondEmotion = adminJDBC.getEmotion(fileName[0], fileName[1], fileName[2]);
-				System.out.println("데이터베이스에서 가져온 값(2장)"+ firstEmotion);
-				System.out.println("데이터베이스에서 가져온 값(3장)"+ secondEmotion);
+				secondEmotion = adminJDBC.getEmotion(fileName[2], fileName[3], fileName[4]);
+				
+				imageResizeTwo = new ImageResizeTwo();
+				result1 = imageResizeTwo.resize(fileName[0], fileName[1], firstEmotion, loginID);
+				imageResizeThree = new ImageResizeThree();
+				result2 = imageResizeThree.resize(fileName[2], fileName[3], fileName[4], secondEmotion, loginID);
+			}else if(frame.equals("2,4")){
+				firstEmotion = adminJDBC.getEmotion(fileName[0], fileName[1]);
+				secondEmotion = adminJDBC.getEmotion(fileName[2], fileName[3], fileName[4], fileName[5]);
+				
+				imageResizeTwo = new ImageResizeTwo();
+				result1 = imageResizeTwo.resize(fileName[0], fileName[1], firstEmotion, loginID);
+				imageResizeFour = new ImageResizeFour();
+				result2 = imageResizeFour.resize(fileName[2], fileName[3], fileName[4], fileName[5], secondEmotion, loginID);
+			}else if(frame.equals("3,4")){
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}				
 		
-		// 이미지 리사이즈 이후 자동으로 Merge까지 완료한다.
-		ImageResize imageResizeTwo = null;
-		ImageResize imageResizeThree = null;
-		ImageResize imageResizeFour = null;
 		
 		if(frame.equals("1,2")){
 			
@@ -69,18 +92,8 @@ public class MakeAlbum {
 		}else if(frame.equals("1,4")){	
 			
 		}else if(frame.equals("2,3")){
-			System.out.println("print!");
-			imageResizeTwo = new ImageResizeTwo();
-			result1 = imageResizeTwo.resize(fileName[0], fileName[1], firstEmotion, loginID);
-			imageResizeThree = new ImageResizeThree();
-			result2 = imageResizeThree.resize(fileName[2], fileName[3], fileName[4], secondEmotion, loginID);
-			System.out.println("print End!");
 			
 		}else if(frame.equals("2,4")){
-			imageResizeTwo = new ImageResizeTwo();
-			result1 = imageResizeTwo.resize(fileName[0], fileName[1], firstEmotion, loginID);
-			imageResizeFour = new ImageResizeFour();
-			result2 = imageResizeFour.resize(fileName[2], fileName[3], fileName[4], fileName[5], secondEmotion, loginID);
 		}else if(frame.equals("3,4")){
 			
 			
