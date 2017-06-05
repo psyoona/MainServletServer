@@ -26,14 +26,14 @@ public class Constants {
 	public static String SURPRISE = "surprise";
 	
 	// image Resize & Merge 2
-	public static int RESIZEWIDTH2 = 180; 
-	public static int RESIZEHEIGHT2 = 230; 
-	public static int MERGEWIDTH2 = 110; 
-	public static int MERGEHEIGHT2 = 100;
+	public static int RESIZEWIDTH2 = 390; 
+	public static int RESIZEHEIGHT2 = 551; 
+	public static int MERGEWIDTH2 = 390; 
+	public static int MERGEHEIGHT2 = 200;
 	
 	// image Resize & Merge 3
-	public static int RESIZEWIDTH3 = 180; 
-	public static int RESIZEHEIGHT3 = 230; 
-	public static int MERGEWIDTH3 = 40; 
-	public static int MERGEHEIGHT3 = 100; 
+	public static int RESIZEWIDTH3 = 390; 
+	public static int RESIZEHEIGHT3 = 551; 
+	public static int MERGEWIDTH3 = 390; 
+	public static int MERGEHEIGHT3 = 200; 
 }

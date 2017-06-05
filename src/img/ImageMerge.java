@@ -28,21 +28,21 @@ public class ImageMerge {
 	
 	public void selectBackground(String emotion) throws IOException{
 		if(emotion.equals(Constants.HAPPINESS)){
-			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/happiness.jpg"));
+			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/happiness.png"));
 		}else if(emotion.equals(Constants.NEUTRAL)){
-			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/neutral.jpg"));
+			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/neutral.png"));
 		}else if(emotion.equals(Constants.SADNESS)){
-			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/sadness.jpg"));
+			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/sadness.png"));
 		}else if(emotion.equals(Constants.SURPRISE)){
-			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/surprise.jpg"));
+			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/surprise.png"));
 		}else if(emotion.equals(Constants.ANGER)){
-			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/anger.jpg"));
+			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/anger.png"));
 		}else if(emotion.equals(Constants.CONTEMPT)){
-			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/contempt.jpg"));
+			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/contempt.png"));
 		}else if(emotion.equals(Constants.CONTEMPT)){
-			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/disgust.jpg"));
+			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/disgust.png"));
 		}else if(emotion.equals(Constants.FEAR)){
-			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/fear.jpg"));
+			background = ImageIO.read(new File(Constants.IMG_PATH + "emotion/fear.png"));
 		}
 	}
 	

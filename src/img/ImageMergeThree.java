@@ -30,9 +30,9 @@ public class ImageMergeThree extends ImageMerge {
 			selectBackground(emotion);
 			
 			Graphics2D graphics = (Graphics2D) background.getGraphics();
-			graphics.drawImage(image1, 30, Constants.MERGEHEIGHT3, null);
-			graphics.drawImage(image2, 220, Constants.MERGEHEIGHT3, null);
-			graphics.drawImage(image3, 130, Constants.MERGEHEIGHT3+250, null);
+			graphics.drawImage(image1, 100, Constants.MERGEHEIGHT3, null);
+			graphics.drawImage(image2, 610, Constants.MERGEHEIGHT3, null);
+			graphics.drawImage(image3, 380, Constants.MERGEHEIGHT3+750, null);
 
 			// 구분되는 파일명을 만들어주기 위함
 			Date currentTime = new Date();

@@ -19,7 +19,7 @@ public class ImageResizeFour extends ImageResize{
 			image2 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" + fileTwo));
 			image3 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" + fileThree));
 			image4 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" + fileFour));
-			selectBackground(emotion);
+
 			resizeImage1 = image1.getScaledInstance(background.getWidth() / 2 - background.getWidth() / 42,
 					background.getHeight() / 2 - background.getHeight() / 20, Image.SCALE_SMOOTH);
 			resizeImage2 = image2.getScaledInstance(background.getWidth() / 2 - background.getWidth() / 42,

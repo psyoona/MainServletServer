@@ -17,7 +17,6 @@ public class ImageResizeThree extends ImageResize{
 			image1 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" +fileOne));
 			image2 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" + fileTwo));
 			image3 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" + fileThree));
-			selectBackground(emotion);
 						
 			resizeImage1 = image1.getScaledInstance(Constants.RESIZEWIDTH3, Constants.RESIZEHEIGHT3, Image.SCALE_SMOOTH);
 			resizeImage2 = image2.getScaledInstance(Constants.RESIZEWIDTH3, Constants.RESIZEHEIGHT3, Image.SCALE_SMOOTH);
