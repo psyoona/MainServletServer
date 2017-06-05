@@ -67,17 +67,17 @@ public class MakeAlbum {
 				secondEmotion = adminJDBC.getEmotion(fileName[2], fileName[3], fileName[4]);
 				
 				imageResizeTwo = new ImageResizeTwo();
-				result1 = imageResizeTwo.resize(fileName[0], fileName[1], firstEmotion, loginID);
+				result1 = imageResizeTwo.resize(Constants.LEFT, fileName[0], fileName[1], firstEmotion, loginID);
 				imageResizeThree = new ImageResizeThree();
-				result2 = imageResizeThree.resize(fileName[2], fileName[3], fileName[4], secondEmotion, loginID);
+				result2 = imageResizeThree.resize(Constants.RIGHT, fileName[2], fileName[3], fileName[4], secondEmotion, loginID);
 			}else if(frame.equals("2,4")){
 				firstEmotion = adminJDBC.getEmotion(fileName[0], fileName[1]);
 				secondEmotion = adminJDBC.getEmotion(fileName[2], fileName[3], fileName[4], fileName[5]);
 				
 				imageResizeTwo = new ImageResizeTwo();
-				result1 = imageResizeTwo.resize(fileName[0], fileName[1], firstEmotion, loginID);
+				result1 = imageResizeTwo.resize(Constants.LEFT, fileName[0], fileName[1], firstEmotion, loginID);
 				imageResizeFour = new ImageResizeFour();
-				result2 = imageResizeFour.resize(fileName[2], fileName[3], fileName[4], fileName[5], secondEmotion, loginID);
+				result2 = imageResizeFour.resize(Constants.RIGHT, fileName[2], fileName[3], fileName[4], fileName[5], secondEmotion, loginID);
 			}else if(frame.equals("3,4")){
 			}
 		} catch (InterruptedException e) {

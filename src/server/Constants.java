@@ -11,7 +11,9 @@ public class Constants {
 	public static String USING = "using"; // 아이디가 사용 중일 때 보낼 메시지
 	public static String NOTUSING = "notusing"; // 아이디가 사용 중이지 않을 때 보낼 메시지
 	
-	public static String IMG_PATH="D://img/"; // 기본 이미지 경로	
+	public static String IMG_PATH = "D://img/"; // 기본 이미지 경로	
+	public static String BACK_LEFT_PATH = "D://img/emotion/left/"; // 기본 이미지 경로	
+	public static String BACK_RIGHT_PATH = "D://img/emotion/right/"; // 기본 이미지 경로	
 	
 	public static String COMPLETE = "이미지 합성 완료";
 	

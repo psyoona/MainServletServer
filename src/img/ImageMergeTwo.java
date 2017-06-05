@@ -13,7 +13,8 @@ import server.Constants;
 
 public class ImageMergeTwo extends ImageMerge{	
 	
-	public ImageMergeTwo(String fileOne, String fileTwo, String emotion, String loginID) {
+	public ImageMergeTwo(String leftOrRight, String fileOne, String fileTwo, String emotion, String loginID) {
+		this.leftOrRight = leftOrRight;
 		this.fileName = new String[2];
 		
 		this.fileName[0] = fileOne;

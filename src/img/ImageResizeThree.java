@@ -10,7 +10,7 @@ import server.Constants;
 
 public class ImageResizeThree extends ImageResize{	
 
-	public BufferedImage resize(String fileOne, String fileTwo, String fileThree, String emotion, String loginID) {
+	public BufferedImage resize(String leftOrRight, String fileOne, String fileTwo, String fileThree, String emotion, String loginID) {
 		try {
 			image1 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" +fileOne));
 			image2 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" + fileTwo));
@@ -20,7 +20,7 @@ public class ImageResizeThree extends ImageResize{
 			Resacle.scale(image2, Constants.IMG_PATH + loginID +"/" + "album/" + fileTwo,"jpg", Constants.RESIZEWIDTH3, Constants.RESIZEHEIGHT3);
 			Resacle.scale(image3, Constants.IMG_PATH + loginID +"/" + "album/" + fileThree,"jpg", Constants.RESIZEWIDTH3, Constants.RESIZEHEIGHT3);
 			
-			ImageMergeThree imgmer = new ImageMergeThree(fileOne, fileTwo, fileThree, emotion, loginID);
+			ImageMergeThree imgmer = new ImageMergeThree(leftOrRight, fileOne, fileTwo, fileThree, emotion, loginID);
 			result = imgmer.merge();
 
 		} catch (IOException ioe) {
