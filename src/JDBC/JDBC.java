@@ -514,7 +514,7 @@ public class JDBC {
 			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			
 			pstmt = con.prepareStatement("INSERT INTO emotion VALUES(?, ?, ?)");
-			System.out.println("위배: "+imgPath);
+			System.out.println("파일이름: "+imgPath);
 			pstmt.setString(1, imgPath);
 			pstmt.setString(2, emotion);
 			pstmt.setDouble(3, value);
