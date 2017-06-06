@@ -28,9 +28,24 @@ public class Constants {
 	public static String SURPRISE = "surprise";
 	
 	
+	// Array Indexing
+	public static int FIRST = 0;
+	public static int SECOND = 1;
+	public static int THIRD = 2;
+	public static int FORTH = 3;
+	public static int FIFTH = 4;
+	public static int SIXTH = 5;
+	public static int SEVENTH = 6;
+	
 	// set Background
 	public static String LEFT = "left";
 	public static String RIGHT = "right";
+	
+	// image Resize & Merge 2
+	public static int RESIZEWIDTH1 = 800; 
+	public static int RESIZEHEIGHT1 = 1131; 
+	public static int MERGE_X1 = 700; 
+	public static int MERGE_Y1 = 200;
 	
 	// image Resize & Merge 2
 	public static int RESIZEWIDTH2 = 400; 

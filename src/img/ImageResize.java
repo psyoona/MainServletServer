@@ -26,6 +26,8 @@ public class ImageResize {
 		// Constructor
 	}
 	
+	public BufferedImage resize(String leftOrRight, String fileTwo, String emotion, String loginID){
+		return null;}
 	public BufferedImage resize(String leftOrRight, String fileOne, String fileTwo, String emotion, String loginID){
 		return null;}
 	public BufferedImage resize(String leftOrRight, String fileOne, String fileTwo, String fileThree, String emotion, String loginID){

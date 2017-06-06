@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import JDBC.JDBC;
 import img.ImageResize;
 import img.ImageResizeFour;
+import img.ImageResizeOne;
 import img.ImageResizeThree;
 import img.ImageResizeTwo;
 import img.TotalMerge;
@@ -47,57 +48,71 @@ public class MakeAlbum {
 		adminJDBC = new JDBC();
 		
 		// 이미지 리사이즈 이후 자동으로 Merge까지 완료한다.
+		ImageResize imageResizeOne = null;
 		ImageResize imageResizeTwo = null;
 		ImageResize imageResizeThree = null;
 		ImageResize imageResizeFour = null;
 		
 		try {
-			if(frame.equals("1,2")){
+			if(frame.equals("1,2")){				
+				firstEmotion = adminJDBC.getEmotion(fileName[Constants.FIRST]);
+				secondEmotion = adminJDBC.getEmotion(fileName[Constants.SECOND], fileName[Constants.THIRD]);
+				
+				imageResizeOne = new ImageResizeOne();
+				result1 = imageResizeOne.resize(Constants.LEFT, fileName[Constants.FIRST], firstEmotion, loginID);
+				imageResizeTwo = new ImageResizeTwo();
+				result2 = imageResizeTwo.resize(Constants.RIGHT, fileName[Constants.SECOND], fileName[Constants.THIRD], firstEmotion, loginID);
 				
 			}else if(frame.equals("1,3")){
+				firstEmotion = adminJDBC.getEmotion(fileName[Constants.FIRST]);
+				secondEmotion = adminJDBC.getEmotion(fileName[Constants.SECOND], fileName[Constants.THIRD], fileName[Constants.FORTH]);
+				
+				imageResizeOne = new ImageResizeOne();
+				result1 = imageResizeOne.resize(Constants.LEFT, fileName[Constants.FIRST], firstEmotion, loginID);
+				imageResizeTwo = new ImageResizeTwo();
+				result2 = imageResizeTwo.resize(Constants.RIGHT, fileName[Constants.SECOND], fileName[Constants.THIRD], fileName[Constants.FORTH], firstEmotion, loginID);
 				
 			}else if(frame.equals("1,4")){
+				firstEmotion = adminJDBC.getEmotion(fileName[Constants.FIRST]);
+				secondEmotion = adminJDBC.getEmotion(fileName[Constants.SECOND], fileName[Constants.THIRD], fileName[Constants.FORTH], fileName[Constants.FIFTH]);
 				
-			}else if(frame.equals("2,1")){
-				
-			}else if(frame.equals("2,2")){
+				imageResizeOne = new ImageResizeOne();
+				result1 = imageResizeOne.resize(Constants.LEFT, fileName[Constants.FIRST], firstEmotion, loginID);
+				imageResizeTwo = new ImageResizeTwo();
+				result2 = imageResizeTwo.resize(Constants.RIGHT, fileName[Constants.SECOND], fileName[Constants.THIRD], fileName[Constants.FORTH], fileName[Constants.FIFTH], firstEmotion, loginID);
 				
 			}else if(frame.equals("2,3")){				
-				firstEmotion = adminJDBC.getEmotion(fileName[0], fileName[1]);
-				secondEmotion = adminJDBC.getEmotion(fileName[2], fileName[3], fileName[4]);
+				firstEmotion = adminJDBC.getEmotion(fileName[Constants.FIRST], fileName[Constants.SECOND]);
+				secondEmotion = adminJDBC.getEmotion(fileName[Constants.THIRD], fileName[Constants.FORTH], fileName[Constants.FIFTH]);
 				
 				imageResizeTwo = new ImageResizeTwo();
-				result1 = imageResizeTwo.resize(Constants.LEFT, fileName[0], fileName[1], firstEmotion, loginID);
+				result1 = imageResizeTwo.resize(Constants.LEFT, fileName[Constants.FIRST], fileName[Constants.SECOND], firstEmotion, loginID);
 				imageResizeThree = new ImageResizeThree();
-				result2 = imageResizeThree.resize(Constants.RIGHT, fileName[2], fileName[3], fileName[4], secondEmotion, loginID);
+				result2 = imageResizeThree.resize(Constants.RIGHT, fileName[Constants.THIRD], fileName[Constants.FORTH], fileName[Constants.FIFTH], secondEmotion, loginID);
+				
 			}else if(frame.equals("2,4")){
-				firstEmotion = adminJDBC.getEmotion(fileName[0], fileName[1]);
-				secondEmotion = adminJDBC.getEmotion(fileName[2], fileName[3], fileName[4], fileName[5]);
+				firstEmotion = adminJDBC.getEmotion(fileName[Constants.FIRST], fileName[Constants.SECOND]);
+				secondEmotion = adminJDBC.getEmotion(fileName[Constants.THIRD], fileName[Constants.FORTH], fileName[Constants.FIFTH], fileName[Constants.SIXTH]);
 				
 				imageResizeTwo = new ImageResizeTwo();
-				result1 = imageResizeTwo.resize(Constants.LEFT, fileName[0], fileName[1], firstEmotion, loginID);
+				result1 = imageResizeTwo.resize(Constants.LEFT, fileName[Constants.FIRST], fileName[Constants.SECOND], firstEmotion, loginID);
 				imageResizeFour = new ImageResizeFour();
-				result2 = imageResizeFour.resize(Constants.RIGHT, fileName[2], fileName[3], fileName[4], fileName[5], secondEmotion, loginID);
+				result2 = imageResizeFour.resize(Constants.RIGHT, fileName[Constants.THIRD], fileName[Constants.FORTH], fileName[Constants.FIFTH], fileName[Constants.SIXTH], secondEmotion, loginID);
+				
 			}else if(frame.equals("3,4")){
+				firstEmotion = adminJDBC.getEmotion(fileName[Constants.FIRST], fileName[Constants.SECOND], fileName[Constants.THIRD]);
+				secondEmotion = adminJDBC.getEmotion(fileName[Constants.FORTH], fileName[Constants.FIFTH], fileName[Constants.SIXTH], fileName[Constants.SEVENTH]);
+				
+				imageResizeThree = new ImageResizeThree();
+				result1 = imageResizeThree.resize(fileName[Constants.FIRST], fileName[Constants.SECOND], fileName[Constants.THIRD], secondEmotion, loginID);		
+				imageResizeFour = new ImageResizeFour();
+				result2 = imageResizeFour.resize(Constants.RIGHT, fileName[Constants.FORTH], fileName[Constants.FIFTH], fileName[Constants.SIXTH], fileName[Constants.SEVENTH], secondEmotion, loginID);
+				
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}				
+		}		
 		
-		
-		if(frame.equals("1,2")){
-			
-		}else if(frame.equals("1,3")){
-			
-		}else if(frame.equals("1,4")){	
-			
-		}else if(frame.equals("2,3")){
-			
-		}else if(frame.equals("2,4")){
-		}else if(frame.equals("3,4")){
-			
-			
-		}						
 		@SuppressWarnings("unused")
 		// 최종 결과물을 토대로 사진을 합성함
 		TotalMerge total = new TotalMerge(result1, result2, loginID);

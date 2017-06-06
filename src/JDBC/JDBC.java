@@ -145,6 +145,39 @@ public class JDBC {
 	}
 	
 
+	// 파일이 한 개일 때 
+	public static String getEmotion(String fileName1) throws InterruptedException{
+		
+		try{
+			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
+			con = DriverManager.getConnection(dburl, db_id, db_pw);
+			
+			pstmt = con.prepareStatement("SELECT * FROM emotion");
+			rs = pstmt.executeQuery();			
+			
+			while(rs.next()){
+				resultPath = rs.getString("path");
+				
+				if(fileName1.equals(resultPath)){
+					resultEmotion = rs.getString("emotion");					
+				}				
+			} // End of While
+			
+			return resultEmotion;
+			
+		} catch(IllegalArgumentException e){
+			System.out.println("입력 형태를 확인하세요");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if(con != null){try{con.close();}catch(Exception e){}}
+			if(pstmt != null){try{pstmt.close();}catch(Exception e){}}
+			if(rs != null){try{rs.close();}catch(Exception e){}}
+		}
+		
+		return "neutral";
+	}
+	
 	// 파일이 두 개일 때 가장 높은 emotion String을 return 한다.
 	// 기본은 neutral이다.
 	public static String getEmotion(String fileName1, String fileName2) throws InterruptedException{
