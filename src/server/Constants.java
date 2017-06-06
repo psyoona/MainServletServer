@@ -48,20 +48,20 @@ public class Constants {
 	public static int MERGE_Y1 = 200;
 	
 	// image Resize & Merge 2
-	public static int RESIZEWIDTH2 = 400; 
-	public static int RESIZEHEIGHT2 = 566; 
-	public static int MERGE_X2 = 390; 
-	public static int MERGE_Y2 = 200;
+	public static int RESIZEWIDTH2 = 584; 
+	public static int RESIZEHEIGHT2 = 825; 
+	public static int MERGE_X2 = 600; 
+	public static int MERGE_Y2 = 500;
 	
 	// image Resize & Merge 3
-	public static int RESIZEWIDTH3 = 400; 
-	public static int RESIZEHEIGHT3 = 566; 
-	public static int MERGE_X3 = 390; 
-	public static int MERGE_Y3 = 200;
+	public static int RESIZEWIDTH3 = 584; 
+	public static int RESIZEHEIGHT3 = 825; 
+	public static int MERGE_X3 = 650; 
+	public static int MERGE_Y3 = 500;
 	
 	// image Resize & Merge 4
-	public static int RESIZEWIDTH4 = 400; 
-	public static int RESIZEHEIGHT4 = 566; 
+	public static int RESIZEWIDTH4 = 584; 
+	public static int RESIZEHEIGHT4 = 825; 
 	public static int MERGE_X4 = 390; 
-	public static int MERGE_Y4 = 200; 
+	public static int MERGE_Y4 = 500; 
 }
