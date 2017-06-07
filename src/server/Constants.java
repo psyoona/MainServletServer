@@ -41,27 +41,27 @@ public class Constants {
 	public static String LEFT = "left";
 	public static String RIGHT = "right";
 	
-	// image Resize & Merge 2
-	public static int RESIZEWIDTH1 = 800; 
-	public static int RESIZEHEIGHT1 = 1131; 
-	public static int MERGE_X1 = 700; 
-	public static int MERGE_Y1 = 200;
+	// image Resize & Merge 1
+	public static int RESIZEWIDTH1 = 1200; 
+	public static int RESIZEHEIGHT1 = 1697; 
+	public static int MERGE_X1 = 300; 
+	public static int MERGE_Y1 = 300;
 	
 	// image Resize & Merge 2
-	public static int RESIZEWIDTH2 = 584; 
-	public static int RESIZEHEIGHT2 = 825; 
-	public static int MERGE_X2 = 600; 
-	public static int MERGE_Y2 = 500;
+	public static int RESIZEWIDTH2 = 743; 
+	public static int RESIZEHEIGHT2 = 1050; 
+	public static int MERGE_X2 = 500; 
+	public static int MERGE_Y2 = 300;
 	
 	// image Resize & Merge 3
-	public static int RESIZEWIDTH3 = 584; 
-	public static int RESIZEHEIGHT3 = 825; 
-	public static int MERGE_X3 = 650; 
-	public static int MERGE_Y3 = 500;
+	public static int RESIZEWIDTH3 = 743; 
+	public static int RESIZEHEIGHT3 = 1050; 
+	public static int MERGE_X3 = 500; 
+	public static int MERGE_Y3 = 300;
 	
 	// image Resize & Merge 4
-	public static int RESIZEWIDTH4 = 584; 
-	public static int RESIZEHEIGHT4 = 825; 
+	public static int RESIZEWIDTH4 = 743; 
+	public static int RESIZEHEIGHT4 = 1050; 
 	public static int MERGE_X4 = 390; 
-	public static int MERGE_Y4 = 500; 
+	public static int MERGE_Y4 = 300; 
 }

@@ -34,10 +34,10 @@ public class ImageMergeFour extends ImageMerge {
 			selectBackground(emotion);
 			
 			Graphics2D graphics = (Graphics2D) background.getGraphics();
-			graphics.drawImage(image1, 300, Constants.MERGE_Y4, null);
-			graphics.drawImage(image2, 1000, Constants.MERGE_Y4, null);
-			graphics.drawImage(image3, 300, Constants.MERGE_Y4+925, null);
-			graphics.drawImage(image4, 1000, Constants.MERGE_Y4+925, null);
+			graphics.drawImage(image1, 150, Constants.MERGE_Y4, null);
+			graphics.drawImage(image2, 950, Constants.MERGE_Y4, null);
+			graphics.drawImage(image3, 150, Constants.MERGE_Y4+1100, null);
+			graphics.drawImage(image4, 950, Constants.MERGE_Y4+1100, null);
 
 			// 구분되는 파일명을 만들어주기 위함
 			Date currentTime = new Date();

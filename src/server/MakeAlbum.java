@@ -34,8 +34,9 @@ public class MakeAlbum {
 		for(int j = index; j <array.length; j++){
 			if(array[j].equals("filename")){
 				System.out.println(array[j+2]);
+				char first = array[j+2].charAt(0);
+				count = Integer.valueOf(first)-48;
 				fileName[count] = array[j+2];
-				count++;
 			}else if(array[j].equals("id")){
 				loginID = array[j+2];
 			}else if(array[j].equals("frame")){
@@ -61,7 +62,7 @@ public class MakeAlbum {
 				imageResizeOne = new ImageResizeOne();
 				result1 = imageResizeOne.resize(Constants.LEFT, fileName[Constants.FIRST], firstEmotion, loginID);
 				imageResizeTwo = new ImageResizeTwo();
-				result2 = imageResizeTwo.resize(Constants.RIGHT, fileName[Constants.SECOND], fileName[Constants.THIRD], firstEmotion, loginID);
+				result2 = imageResizeTwo.resize(Constants.RIGHT, fileName[Constants.SECOND], fileName[Constants.THIRD], secondEmotion, loginID);
 				
 			}else if(frame.equals("1,3")){
 				firstEmotion = adminJDBC.getEmotion(fileName[Constants.FIRST]);
@@ -70,7 +71,7 @@ public class MakeAlbum {
 				imageResizeOne = new ImageResizeOne();
 				result1 = imageResizeOne.resize(Constants.LEFT, fileName[Constants.FIRST], firstEmotion, loginID);
 				imageResizeTwo = new ImageResizeTwo();
-				result2 = imageResizeTwo.resize(Constants.RIGHT, fileName[Constants.SECOND], fileName[Constants.THIRD], fileName[Constants.FORTH], firstEmotion, loginID);
+				result2 = imageResizeTwo.resize(Constants.RIGHT, fileName[Constants.SECOND], fileName[Constants.THIRD], fileName[Constants.FORTH], secondEmotion, loginID);
 				
 			}else if(frame.equals("1,4")){
 				firstEmotion = adminJDBC.getEmotion(fileName[Constants.FIRST]);
@@ -79,7 +80,7 @@ public class MakeAlbum {
 				imageResizeOne = new ImageResizeOne();
 				result1 = imageResizeOne.resize(Constants.LEFT, fileName[Constants.FIRST], firstEmotion, loginID);
 				imageResizeTwo = new ImageResizeTwo();
-				result2 = imageResizeTwo.resize(Constants.RIGHT, fileName[Constants.SECOND], fileName[Constants.THIRD], fileName[Constants.FORTH], fileName[Constants.FIFTH], firstEmotion, loginID);
+				result2 = imageResizeTwo.resize(Constants.RIGHT, fileName[Constants.SECOND], fileName[Constants.THIRD], fileName[Constants.FORTH], fileName[Constants.FIFTH], secondEmotion, loginID);
 				
 			}else if(frame.equals("2,3")){				
 				firstEmotion = adminJDBC.getEmotion(fileName[Constants.FIRST], fileName[Constants.SECOND]);
@@ -104,7 +105,7 @@ public class MakeAlbum {
 				secondEmotion = adminJDBC.getEmotion(fileName[Constants.FORTH], fileName[Constants.FIFTH], fileName[Constants.SIXTH], fileName[Constants.SEVENTH]);
 				
 				imageResizeThree = new ImageResizeThree();
-				result1 = imageResizeThree.resize(fileName[Constants.FIRST], fileName[Constants.SECOND], fileName[Constants.THIRD], secondEmotion, loginID);		
+				result1 = imageResizeThree.resize(fileName[Constants.FIRST], fileName[Constants.SECOND], fileName[Constants.THIRD], firstEmotion, loginID);		
 				imageResizeFour = new ImageResizeFour();
 				result2 = imageResizeFour.resize(Constants.RIGHT, fileName[Constants.FORTH], fileName[Constants.FIFTH], fileName[Constants.SIXTH], fileName[Constants.SEVENTH], secondEmotion, loginID);
 				

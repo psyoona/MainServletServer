@@ -13,7 +13,7 @@ public class ImageResizeOne extends ImageResize {
 		try {			
 			image1 = ImageIO.read(new File(Constants.IMG_PATH + loginID + "/" + fileOne));
 			
-			Resacle.scale(image1, Constants.IMG_PATH + loginID +"/" + "album/" + fileOne,"jpg", Constants.RESIZEWIDTH2, Constants.RESIZEHEIGHT2);
+			Resacle.scale(image1, Constants.IMG_PATH + loginID +"/" + "album/" + fileOne,"jpg", Constants.RESIZEWIDTH1, Constants.RESIZEHEIGHT1);
 			
 			ImageMergeOne imgmer = new ImageMergeOne(leftOrRight, fileOne, emotion, loginID);
 			result = imgmer.merge();

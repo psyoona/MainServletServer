@@ -471,7 +471,7 @@ public class JDBC {
 			dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 			con = DriverManager.getConnection(dburl, db_id, db_pw);
 			
-			pstmt = con.prepareStatement("SELECT COUNT(*) FROM imgMerge");
+			pstmt = con.prepareStatement("SELECT COUNT(*) FROM imgMerge WHERE id = '"+loginID+"'");
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){

@@ -32,7 +32,7 @@ public class ImageMergeTwo extends ImageMerge{
 			
 			Graphics2D graphics = (Graphics2D) background.getGraphics();
 			graphics.drawImage(image1, Constants.MERGE_X2, Constants.MERGE_Y2, null);
-			graphics.drawImage(image2, Constants.MERGE_X2, Constants.MERGE_Y2+925, null);
+			graphics.drawImage(image2, Constants.MERGE_X2, Constants.MERGE_Y2+1100, null);
 			
 			// 구분되는 파일명을 만들어주기 위함
 			Date currentTime = new Date();
