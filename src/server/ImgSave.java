@@ -5,10 +5,10 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import JDBC.JDBC;
+import JDBC.JDBCDriver;
 
 public class ImgSave {
-	JDBC adminJDBC;
+	JDBCDriver adminJDBC;
 	String loginID, imgAddress;
 	EstimationAnalysis emotion;
 	int faceCount; // 얼굴의 갯수를 카운트 하기 위한 변수
@@ -35,7 +35,7 @@ public class ImgSave {
 		}
 		
 		try {
-			adminJDBC = new JDBC();
+			adminJDBC = new JDBCDriver();
 			adminJDBC.saveImg(loginID, imgAddress);
 			
 			// 클라이언트에게 완료되었다고 응답함

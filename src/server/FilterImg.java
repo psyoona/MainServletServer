@@ -21,14 +21,14 @@ import com.jhlabs.image.LookupFilter;
 import com.jhlabs.image.SolarizeFilter;
 import com.jhlabs.image.ThresholdFilter;
 
-import JDBC.JDBC;
+import JDBC.JDBCDriver;
 
 public class FilterImg {
 	protected static BufferedImage orgImage;
 	protected static BufferedImage fileterImage;
 	String loginID;
 	String fileName;
-	JDBC adminJDBC;
+	JDBCDriver adminJDBC;
 
 	public FilterImg() {
 
@@ -47,7 +47,7 @@ public class FilterImg {
 		System.out.println(loginID + "  " + fileName);
 
 		// 데이터베이스에 원본 이미지 저장
-		adminJDBC = new JDBC();
+		adminJDBC = new JDBCDriver();
 		adminJDBC.originalImg(loginID, fileName);
 
 		File orgFile = new File(Constants.IMG_PATH + loginID + "/filter/" + fileName); // 원본파일주소

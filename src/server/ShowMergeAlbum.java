@@ -4,11 +4,11 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import JDBC.JDBC;
+import JDBC.JDBCDriver;
 
 public class ShowMergeAlbum {
 	String loginID;
-	JDBC adminJDBC;
+	JDBCDriver adminJDBC;
 	String[] album;
 	
 	public void showMergeAlbum(String[] array, HttpServletResponse resp) throws IOException{
@@ -20,7 +20,7 @@ public class ShowMergeAlbum {
 		}
 		
 		// 데이터베이스에서 앨범목록을 찾아서 리턴한다.
-		adminJDBC = new JDBC();
+		adminJDBC = new JDBCDriver();
 		album = adminJDBC.showMergeAlbum(loginID);
 		
 		StringBuilder sender = new StringBuilder();

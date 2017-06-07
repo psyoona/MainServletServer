@@ -4,12 +4,12 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import JDBC.JDBC;
+import JDBC.JDBCDriver;
 import server.Constants;
 
 public class Register {
 	String id=null, pw=null, nickname=null, encpw=null;	
-	JDBC adminJDBC;
+	JDBCDriver adminJDBC;
 	
 	@SuppressWarnings("static-access")
 	public void register(String[] array, HttpServletResponse resp) throws IOException{
@@ -27,7 +27,7 @@ public class Register {
 			}
 		}
 		
-		adminJDBC = new JDBC();
+		adminJDBC = new JDBCDriver();
 		// UserList 데이터베이스에 아이디, 비밀번호, 닉네임을 등록한다.
 		adminJDBC.registerDB(id, encpw, nickname);
 		// MergeCount 데이터베이스에 아이디를 등록하고 카운트값을 초기화시킨다.

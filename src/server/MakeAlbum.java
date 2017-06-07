@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import JDBC.JDBC;
+import JDBC.JDBCDriver;
 import img.ImageResize;
 import img.ImageResizeFour;
 import img.ImageResizeOne;
@@ -25,7 +25,7 @@ public class MakeAlbum {
 	
 	int count;
 	String loginID, firstEmotion, secondEmotion;
-	JDBC adminJDBC;
+	JDBCDriver adminJDBC;
 	
 	@SuppressWarnings("static-access")
 	public void makeAlbum(String[] array, int index, HttpServletResponse resp) throws IOException{
@@ -46,7 +46,7 @@ public class MakeAlbum {
 		} // End of for
 		
 		// 사진의 emotion의 중 큰 값을 구해서 가져온다.
-		adminJDBC = new JDBC();
+		adminJDBC = new JDBCDriver();
 		
 		// 이미지 리사이즈 이후 자동으로 Merge까지 완료한다.
 		ImageResize imageResizeOne = null;

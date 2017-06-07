@@ -6,14 +6,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import JDBC.JDBC;
+import JDBC.JDBCDriver;
 import server.Constants;
 
 public class ImageMerge {
 	protected String loginID;
 	protected String[] fileName;
 	protected String emotion;
-	protected JDBC adminJDBC;
+	protected JDBCDriver adminJDBC;
 	protected BufferedImage background = null;
 	protected String leftOrRight;
 

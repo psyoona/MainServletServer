@@ -9,7 +9,7 @@ import java.util.Date;
 
 import javax.imageio.ImageIO;
 
-import JDBC.JDBC;
+import JDBC.JDBCDriver;
 
 public class TotalMerge extends ImageMerge{
 	BufferedImage background;
@@ -34,7 +34,7 @@ public class TotalMerge extends ImageMerge{
 
 			ImageIO.write(background, "jpg", new File(path));
 			
-			adminJDBC = new JDBC();
+			adminJDBC = new JDBCDriver();
 			System.out.println("Save Merge Start");
 			adminJDBC.saveMerge(this.loginID, fileName, "happy");
 		} catch (IOException e) {

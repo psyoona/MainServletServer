@@ -12,7 +12,7 @@
   
   <servlet>
   	<servlet-name>MainServer</servlet-name>
-  	<servlet-class>server.MainServer</servlet-class>
+  	<servlet-class>driver.MainServer</servlet-class>
   </servlet>
   
   <servlet-mapping>

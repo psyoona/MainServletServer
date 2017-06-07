@@ -10,7 +10,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import server.EstimationAnalysis.Emotion;
 import server.MakeDirectory;
 
-public class JDBC {
+public class JDBCDriver {
 	static String dburl = null;
 	static Connection con = null;
 	static PreparedStatement pstmt = null;
@@ -27,7 +27,7 @@ public class JDBC {
 	static double tempDouble;
 	static double resultDouble=0;
 	
-	public JDBC(){
+	public JDBCDriver(){
 		db_id = "scott";
 		db_pw = "mobile";
 		try {

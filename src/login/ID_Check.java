@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import JDBC.JDBC;
+import JDBC.JDBCDriver;
 
 
 /*
@@ -12,7 +12,7 @@ import JDBC.JDBC;
  */
 public class ID_Check {
 	String id=null, pw=null, nickname=null;
-	JDBC adminJDBC;
+	JDBCDriver adminJDBC;
 	boolean checkID;
 	
 	public ID_Check(){
@@ -27,7 +27,7 @@ public class ID_Check {
 			}
 		}
 		
-		adminJDBC = new JDBC();
+		adminJDBC = new JDBCDriver();
 		checkID = adminJDBC.checkID(id);
 		if(checkID){
 			// 중복된 아이디가 있는 경우			

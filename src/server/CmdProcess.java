@@ -9,14 +9,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import JDBC.JDBC;
+import JDBC.JDBCDriver;
 import login.ID_Check;
 import login.Login;
 import login.Register;
 
 public class CmdProcess {
 	static String dburl = null;
-	static JDBC adminJDBC;
+	static JDBCDriver adminJDBC;
 	static boolean checkLogin; // 로그인 처리 되었는지 체크하는 변수
 	static boolean checkID; // 중복아이디가 있는지 처리하는 변수
 	static String loginID; // 로그인된 아이디를 임시로 저장하기 위한 변수
@@ -29,7 +29,7 @@ public class CmdProcess {
 
 	static EstimationAnalysis emotion; // 감정 분석하기 위한 클래스
 
-	protected static void process(HttpServletRequest req, HttpServletResponse resp)
+	public static void process(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String result = CmdProcess.getBody(req);
 		String[] array = result.split("\"");

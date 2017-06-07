@@ -4,11 +4,11 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import JDBC.JDBC;
+import JDBC.JDBCDriver;
 
 public class ShowAlbum {
 	String loginID;
-	JDBC adminJDBC;
+	JDBCDriver adminJDBC;
 	String[] album;
 	
 	public void showMergeAlbum(String[] array, HttpServletResponse resp) throws IOException{
@@ -18,7 +18,7 @@ public class ShowAlbum {
 			}
 		}
 		
-		adminJDBC = new JDBC();
+		adminJDBC = new JDBCDriver();
 		album = adminJDBC.showAlbum(loginID);
 		
 		if(album != null){

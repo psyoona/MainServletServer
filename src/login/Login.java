@@ -4,13 +4,13 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import JDBC.JDBC;
+import JDBC.JDBCDriver;
 import server.Constants;
 
 public class Login {
 	String id = null, pw = null;
 	String encpw;
-	JDBC adminJDBC;
+	JDBCDriver adminJDBC;
 	boolean checkLogin;
 	
 	@SuppressWarnings("static-access")
@@ -26,7 +26,7 @@ public class Login {
 			}
 		}
 		
-		adminJDBC = new JDBC();
+		adminJDBC = new JDBCDriver();
 		checkLogin = adminJDBC.loginDB(id, encpw);
 		if(checkLogin){
 			// 로그인 정보가 일치하는 경우

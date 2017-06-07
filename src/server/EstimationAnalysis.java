@@ -1,6 +1,6 @@
 package server;
 
-import JDBC.JDBC;
+import JDBC.JDBCDriver;
 
 public class EstimationAnalysis {
 	// 받은 JSON 값으로부터 감정을 분석하는 클래스
@@ -28,7 +28,7 @@ public class EstimationAnalysis {
 	
 	public static void saveEmotion(){
 		// 결정된 하나의 감정을 저장하기 위한 메소드
-		JDBC adminJDBC = new JDBC();
+		JDBCDriver adminJDBC = new JDBCDriver();
 		adminJDBC.saveEmotion(imgPath, selecctEmotion, maxValue);
 		System.out.println("이 사진의 Emotion은 "+ selecctEmotion +" 입니다.");
 	}	
