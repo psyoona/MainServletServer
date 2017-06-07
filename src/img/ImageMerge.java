@@ -34,11 +34,11 @@ public class ImageMerge {
 		} else {
 			path = Constants.BACK_RIGHT_PATH;
 		}
+		
+		System.out.println("현재 가지고 있는 값 : "+emotion);
 
 		if (emotion.equals(Constants.HAPPINESS)) {
 			background = ImageIO.read(new File(path + "happiness.png"));
-		} else if (emotion.equals(Constants.NEUTRAL)) {
-			background = ImageIO.read(new File(path + "neutral.png"));
 		} else if (emotion.equals(Constants.SADNESS)) {
 			background = ImageIO.read(new File(path + "sadness.png"));
 		} else if (emotion.equals(Constants.SURPRISE)) {
@@ -47,10 +47,12 @@ public class ImageMerge {
 			background = ImageIO.read(new File(path + "anger.png"));
 		} else if (emotion.equals(Constants.CONTEMPT)) {
 			background = ImageIO.read(new File(path + "contempt.png"));
-		} else if (emotion.equals(Constants.CONTEMPT)) {
+		} else if (emotion.equals(Constants.DISGUST)) {
 			background = ImageIO.read(new File(path + "disgust.png"));
 		} else if (emotion.equals(Constants.FEAR)) {
 			background = ImageIO.read(new File(path + "fear.png"));
+		} else {
+			background = ImageIO.read(new File(path + "neutral.png"));
 		}
 	}
 

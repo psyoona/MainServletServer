@@ -127,7 +127,7 @@ public class JDBCDriver {
 					pw_db = rs.getString("pw");
 					if(pw_db.equals(pw)){
 						// 아이디와 패스워드 모두 일치하는 경우
-						System.out.println(id_db+"");
+						// System.out.println(id_db+"");
 						return true;
 					}
 				}

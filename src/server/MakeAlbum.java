@@ -79,8 +79,8 @@ public class MakeAlbum {
 				
 				imageResizeOne = new ImageResizeOne();
 				result1 = imageResizeOne.resize(Constants.LEFT, fileName[Constants.FIRST], firstEmotion, loginID);
-				imageResizeTwo = new ImageResizeTwo();
-				result2 = imageResizeTwo.resize(Constants.RIGHT, fileName[Constants.SECOND], fileName[Constants.THIRD], fileName[Constants.FORTH], fileName[Constants.FIFTH], secondEmotion, loginID);
+				imageResizeFour = new ImageResizeFour();
+				result2 = imageResizeFour.resize(Constants.RIGHT, fileName[Constants.SECOND], fileName[Constants.THIRD], fileName[Constants.FORTH], fileName[Constants.FIFTH], secondEmotion, loginID);
 				
 			}else if(frame.equals("2,3")){				
 				firstEmotion = adminJDBC.getEmotion(fileName[Constants.FIRST], fileName[Constants.SECOND]);

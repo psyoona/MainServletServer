@@ -49,11 +49,10 @@ public class ImageMergeTwo extends ImageMerge{
 			
 			// 이미지 Merge가 완료되었음을 의미
 			System.out.println(Constants.COMPLETE);
-			
+			return result;			
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
-		
 		return result;
 	}
 }

@@ -59,6 +59,5 @@ public class ImageMergeFour extends ImageMerge {
 			ioe.printStackTrace();
 		}
 		return result;
-
 	}
 }

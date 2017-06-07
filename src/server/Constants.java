@@ -42,10 +42,10 @@ public class Constants {
 	public static String RIGHT = "right";
 	
 	// image Resize & Merge 1
-	public static int RESIZEWIDTH1 = 1200; 
-	public static int RESIZEHEIGHT1 = 1697; 
-	public static int MERGE_X1 = 300; 
-	public static int MERGE_Y1 = 300;
+	public static int RESIZEWIDTH1 = 1300; 
+	public static int RESIZEHEIGHT1 = 1838; 
+	public static int MERGE_X1 = 200; 
+	public static int MERGE_Y1 = 400;
 	
 	// image Resize & Merge 2
 	public static int RESIZEWIDTH2 = 743; 
